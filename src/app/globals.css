@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Arizonia&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* RapidAssur Brand Colors */
+  --ra-navy:   #003366;
+  --ra-blue:   #2563EB;
+  --ra-red:    #DC2626;
+  --ra-orange: #E9711C;
+
+  /* Layout */
+  --foreground-rgb: 15, 23, 42;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* RapidAssur utility classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .ra-gradient {
+    background: linear-gradient(135deg, var(--ra-navy) 0%, var(--ra-blue) 100%);
+  }
+
+  .ra-gradient-orange {
+    background: linear-gradient(135deg, var(--ra-orange) 0%, var(--ra-red) 100%);
+  }
+
+  .ra-card {
+    @apply bg-white rounded-2xl shadow-md border border-slate-100 p-6;
+  }
+
+  .ra-btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors;
+  }
+
+  .ra-btn-outline {
+    @apply border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold px-6 py-3 rounded-xl transition-colors;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
