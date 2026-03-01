@@ -45,7 +45,7 @@ export default function SpecialitesPage(){
         <div className="text-center mt-16">
           <p className="text-gray-400 mb-6">Votre secteur n&apos;est pas listé? Nous couvrons tous les risques d&apos;entreprise.</p>
           <a href="tel:5146222163" className="inline-block bg-[#003366] hover:bg-blue-800 text-white font-bold px-8 py-4 rounded-xl text-lg transition-colors">
-            📞 514-622-2163 — Parler à Erick
+            📞 514-622-2163 -- Parler à Erick
           </a>
         </div>
       </section>

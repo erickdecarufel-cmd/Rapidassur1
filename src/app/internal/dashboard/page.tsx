@@ -186,13 +186,13 @@ export default function DashboardPage() {
             Bonjour, <span style={{ color: '#E9711C' }}>Erick</span> 👋
           </h1>
           <p className="text-slate-400 text-sm capitalize">{today}</p>
-          <p className="text-slate-700 text-xs mt-0.5">RapidAssur Copilote 2.1 — Espace courtier privé</p>
+          <p className="text-slate-700 text-xs mt-0.5">RapidAssur Copilote 2.1 -- Espace courtier privé</p>
         </header>
 
         {/* ── KPIs ── */}
         <section className="mb-8">
           <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">
-            Performance — Février 2026
+            Performance -- Février 2026
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
             {KPI_METRICS.map((card) => <KPIItem key={card.id} card={card} />)}
@@ -202,14 +202,14 @@ export default function DashboardPage() {
         {/* ── Layout 2 colonnes ── */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-8">
 
-          {/* Colonne gauche — Outils internes (2/3) */}
+          {/* Colonne gauche -- Outils internes (2/3) */}
           <div className="xl:col-span-2 space-y-8">
 
             {/* 10 Secteurs JotForm */}
             <section>
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest">
-                  10 Secteurs — Formulaires JotForm actifs
+                  10 Secteurs -- Formulaires JotForm actifs
                 </h2>
                 <span className="text-xs text-slate-700">1 317 champs · 3 couches fonctionnelles</span>
               </div>
@@ -272,7 +272,7 @@ export default function DashboardPage() {
             </section>
           </div>
 
-          {/* Colonne droite — Outils rapides (1/3) */}
+          {/* Colonne droite -- Outils rapides (1/3) */}
           <div className="space-y-6">
             <section>
               <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">

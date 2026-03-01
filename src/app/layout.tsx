@@ -75,8 +75,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </div>
           </div>
           <div className="container mx-auto px-4 pt-8 border-t border-white/10 text-center flex flex-col gap-2">
-            <p>© 2026 RapidAssur — Tous droits réservés</p>
-            <p className="text-xs text-gray-500">⚠ Les analyses IA sont des suggestions — toujours valider avec un courtier certifié.</p>
+            <p>© 2026 RapidAssur -- Tous droits réservés</p>
+            <p className="text-xs text-gray-500">⚠ Les analyses IA sont des suggestions -- toujours valider avec un courtier certifié.</p>
           </div>
         </footer>
 

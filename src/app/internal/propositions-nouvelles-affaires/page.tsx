@@ -295,7 +295,7 @@ export default function PropositionsNouvellesAffaires() {
           </Link>
           <div>
             <h1 className="text-2xl font-bold text-[#003366]">
-              Nouvelle Affaire — Sélecteur de propositions
+              Nouvelle Affaire -- Sélecteur de propositions
             </h1>
             <p className="text-sm text-gray-500">
               Identifiez le bon formulaire · Pré-remplissez · Lancez en direct
@@ -326,7 +326,7 @@ export default function PropositionsNouvellesAffaires() {
                 }}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
               >
-                <option value="">— Choisir le secteur —</option>
+                <option value="">-- Choisir le secteur --</option>
                 {SELECTEUR_FORMS.map(f => (
                   <option key={f.id} value={f.id}>
                     {f.emoji} {f.label} ({f.champs} champs)
@@ -346,7 +346,7 @@ export default function PropositionsNouvellesAffaires() {
                 disabled={!form}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB] disabled:bg-gray-100"
               >
-                <option value="">— Choisir —</option>
+                <option value="">-- Choisir --</option>
                 {form?.sousProduits.map(sp => (
                   <option key={sp} value={sp}>{sp}</option>
                 ))}
@@ -364,7 +364,7 @@ export default function PropositionsNouvellesAffaires() {
                 disabled={!form}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB] disabled:bg-gray-100"
               >
-                <option value="">— Assureur habituel —</option>
+                <option value="">-- Assureur habituel --</option>
                 {form?.assureurs.map(a => (
                   <option key={a} value={a}>{a}</option>
                 ))}
@@ -406,7 +406,7 @@ export default function PropositionsNouvellesAffaires() {
             <div className="flex items-center justify-between px-5 py-3 border-b bg-gray-50">
               <div className="flex items-center gap-2">
                 <FileText className="w-4 h-4 text-[#003366]" />
-                <span className="text-sm font-semibold text-[#003366]">Fiche Nominative — SOCLE</span>
+                <span className="text-sm font-semibold text-[#003366]">Fiche Nominative -- SOCLE</span>
                 <span className="text-xs text-gray-400">· pré-remplit JotForm automatiquement</span>
               </div>
               {/* Indicateur de complétude */}
@@ -554,10 +554,10 @@ export default function PropositionsNouvellesAffaires() {
                   className="flex items-center gap-2 bg-[#2563EB] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  GO LIVE — Ouvrir JotForm
+                  GO LIVE -- Ouvrir JotForm
                 </button>
                 <button
-                  onClick={() => window.open(`mailto:?subject=Formulaire RapidAssur — ${form.label}&body=${encodeURIComponent(prefillUrl)}`, '_blank')}
+                  onClick={() => window.open(`mailto:?subject=Formulaire RapidAssur -- ${form.label}&body=${encodeURIComponent(prefillUrl)}`, '_blank')}
                   className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-50 transition"
                 >
                   <Mail className="w-4 h-4" />
@@ -630,7 +630,7 @@ export default function PropositionsNouvellesAffaires() {
                 <ExternalLink className="w-4 h-4 text-white/70" />
                 <span className="text-white font-medium text-sm">
                   {form.emoji} {form.label}
-                  {selectedSousProduit ? ` — ${selectedSousProduit}` : ''}
+                  {selectedSousProduit ? ` -- ${selectedSousProduit}` : ''}
                   {selectedAssureur ? ` · ${selectedAssureur}` : ''}
                 </span>
               </div>

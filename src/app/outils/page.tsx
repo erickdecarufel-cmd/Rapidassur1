@@ -75,7 +75,7 @@ export default function OutilsPage(){
         <div className="bg-[#0F172A] rounded-2xl border border-[#1E293B] p-8 shadow-2xl">
           <Quiz/>
         </div>
-        <p className="text-center text-gray-600 mt-6 text-sm">D&apos;autres outils arrivent bientôt — calculateur de prime, vérificateur RBQ, carte de zones inondables</p>
+        <p className="text-center text-gray-600 mt-6 text-sm">D&apos;autres outils arrivent bientôt -- calculateur de prime, vérificateur RBQ, carte de zones inondables</p>
       </section>
     </main>
   )
