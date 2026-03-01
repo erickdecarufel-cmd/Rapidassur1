@@ -1,282 +1,180 @@
 import Link from 'next/link';
 
-const SECTEURS = [
-  { nom: 'Construction', emoji: '🏗️', desc: 'EG, sous-traitants, rénovation, projets' },
-  { nom: 'Flotte', emoji: '🚛', desc: 'Camionneurs, flottes commerciales' },
-  { nom: 'Immobilier', emoji: '🏢', desc: 'Placements, syndicats, gestion' },
-  { nom: 'Professionnel', emoji: '💼', desc: 'Consultants, TI, services conseils' },
-  { nom: 'Commercial', emoji: '🏪', desc: 'Commerces de détail, bureaux' },
-  { nom: 'Hospitalité', emoji: '🏨', desc: 'Hôtels, restaurants, hébergement' },
-  { nom: 'Fabrication', emoji: '🏭', desc: 'Manufacturiers, industries' },
-  { nom: 'Agricole', emoji: '🌾', desc: 'Exploitants, serres, élevage' },
-  { nom: 'Santé', emoji: '🏥', desc: 'Médecins, cliniques, soins' },
-  { nom: 'Sécurité', emoji: '🛡️', desc: 'Gardiennage, surveillance' },
-];
-
 export default function HomePage() {
   return (
-    <main className="min-h-screen" style={{ background: '#030712' }}>
-
-      {/* ═══ HERO ═══ */}
-      <section
-        className="relative min-h-screen flex items-center overflow-hidden"
+    <div className="flex flex-col">
+      {/* SECTION 1 : HERO */}
+      <section 
+        className="relative pt-24 pb-32 px-4 text-center overflow-hidden"
         style={{ background: 'radial-gradient(ellipse at 60% 20%, #0F3460 0%, #060d1b 55%, #030712 100%)' }}
       >
-        {/* Grille de fond */}
-        <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
-        {/* Lueurs */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle at 75% 15%, rgba(233,113,28,0.22) 0%, transparent 45%), radial-gradient(circle at 20% 70%, rgba(37,99,235,0.15) 0%, transparent 45%)',
-            filter: 'blur(60px)',
-          }}
-        />
-
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-32 text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8 border"
-            style={{ background: 'rgba(233,113,28,0.1)', borderColor: 'rgba(233,113,28,0.3)' }}>
-            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#E9711C' }} />
-            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#E9711C' }}>
-              Courtier indépendant · Québec · 30 ans d&apos;expérience
-            </span>
+        <div className="container mx-auto max-w-4xl relative z-10 flex flex-col items-center">
+          <div className="mb-6 inline-flex items-center rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-medium tracking-widest text-gray-300 uppercase">
+            ● COURTIER INDÉPENDANT · QUÉBEC · 30 ANS D'EXPÉRIENCE
           </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-            Le cerveau<br />
-            <span
-              className="text-transparent bg-clip-text"
-              style={{ backgroundImage: 'linear-gradient(105deg, #E9711C 0%, #DC2626 60%, #E9711C 100%)' }}
-            >
-              prescriptif
-            </span>{' '}du courtier
+          
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+            Le cerveau <span className="bg-gradient-to-r from-[#E9711C] to-orange-400 bg-clip-text text-transparent">prescriptif</span> du courtier
           </h1>
-
-          <p className="text-lg mb-4 max-w-2xl mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>
-            Automatisez vos soumissions. Libérez{' '}
-            <strong className="text-white">75 à 85% de votre temps BMS</strong>.
-            Concentrez-vous sur le conseil à haute valeur.
+          
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl">
+            Automatisez vos soumissions. Libérez 75 à 85% de votre temps BMS.
           </p>
 
-          <p className="text-sm mb-10" style={{ color: 'rgba(255,255,255,0.3)' }}>
+          <p className="text-sm text-gray-400 mb-10 font-medium">
             Construction · Flotte · Immobilier · Pro · Commercial · et 5 autres secteurs
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link
-              href="/soumission"
-              className="inline-flex items-center justify-center gap-2 text-white font-bold px-8 py-4 rounded-2xl text-lg transition-all hover:-translate-y-0.5"
-              style={{
-                background: 'linear-gradient(180deg, #f0882e 0%, #E9711C 45%, #c95a0a 100%)',
-                boxShadow: '0 6px 24px rgba(233,113,28,0.35)',
-              }}
-            >
+          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            <Link href="/#construis" className="bg-[#E9711C] hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors">
               ⚡ Construis ta prime
             </Link>
-            <Link
-              href="/internal/dashboard"
-              className="inline-flex items-center justify-center gap-2 text-white font-semibold px-8 py-4 rounded-2xl text-lg transition-all"
-              style={{ background: 'rgba(255,255,255,0.07)', border: '1.5px solid rgba(255,255,255,0.2)' }}
-            >
+            <Link href="/internal/dashboard" className="border border-white/30 hover:bg-white/5 text-white font-bold py-3 px-8 rounded-lg transition-colors">
               🎛️ Espace courtier
             </Link>
           </div>
 
-          {/* Trust bar */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
-            {['Réponse en 2h', '10 secteurs couverts', '9 000 courtiers ciblés', '100% indépendant'].map((t, i) => (
-              <>
-                {i > 0 && <span key={`sep-${i}`} style={{ color: 'rgba(255,255,255,0.12)' }}>·</span>}
-                <span key={t} className="flex items-center gap-1.5">
-                  <span style={{ color: '#E9711C' }}>✓</span> {t}
-                </span>
-              </>
-            ))}
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+            <span>✓ Réponse en 2h</span>
+            <span>✓ 10 secteurs couverts</span>
+            <span>✓ 9 000 courtiers ciblés</span>
+            <span>✓ 100% indépendant</span>
           </div>
         </div>
       </section>
 
-      {/* ═══ AVANT / APRÈS ═══ */}
-      <section className="py-24 px-6" style={{ background: '#070d1a' }}>
-        <div className="max-w-5xl mx-auto">
+      {/* SECTION 2 : AVANT/APRÈS */}
+      <section className="py-24 bg-[#030712] px-4">
+        <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest uppercase mb-3 block" style={{ color: '#E9711C' }}>
-              Pourquoi RapidAssur
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-              L&apos;assurance de niche,<br />
-              <em
-                className="not-italic text-transparent bg-clip-text"
-                style={{ backgroundImage: 'linear-gradient(90deg, #E9711C, #DC2626)' }}
-              >
-                ce n&apos;est pas un produit générique
-              </em>
-            </h2>
+            <span className="text-[#E9711C] font-bold text-sm tracking-wider uppercase">POURQUOI RAPIDASSUR</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2">L'assurance de niche, ce n'est pas un produit générique</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="rounded-2xl p-8" style={{ background: 'rgba(220,38,38,0.06)', border: '1px solid rgba(220,38,38,0.2)' }}>
-              <div className="flex items-center gap-2 font-bold text-sm mb-6" style={{ color: '#f87171' }}>
-                ✕ Le vieux modèle BMS
-              </div>
-              {[
-                'Remplir 60+ champs à la main dans Epic',
-                'Attendre 3 jours pour une soumission',
-                'Produit standard mal adapté au secteur',
-                'Renouvellement par défaut, sans révision',
-                'Aucune visibilité sur l\'appétit des assureurs',
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3 mb-3 text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
-                  <span className="mt-0.5 flex-shrink-0" style={{ color: '#ef4444' }}>✕</span>
-                  {item}
-                </div>
-              ))}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Card Rouge */}
+            <div className="bg-[#111] border border-[#DC2626]/30 rounded-xl p-8">
+              <h3 className="text-2xl font-bold text-[#DC2626] mb-6">✗ Le vieux modèle BMS</h3>
+              <ul className="space-y-4 text-gray-300">
+                <li className="flex gap-3"><span>-</span> Remplir 60+ champs à la main dans Epic</li>
+                <li className="flex gap-3"><span>-</span> Risque de mal positionner le risque</li>
+                <li className="flex gap-3"><span>-</span> Renouvellement par défaut, sans révision</li>
+                <li className="flex gap-3"><span>-</span> Aucune visibilité sur l'appétit des assureurs</li>
+                <li className="flex gap-3"><span>-</span> 29h/semaine de saisie BMS</li>
+              </ul>
             </div>
 
-            <div className="rounded-2xl p-8" style={{ background: 'rgba(34,197,94,0.06)', border: '1px solid rgba(34,197,94,0.2)' }}>
-              <div className="flex items-center gap-2 font-bold text-sm mb-6" style={{ color: '#4ade80' }}>
-                ✓ Le modèle Copilote
-              </div>
-              {[
-                'JotForm intelligent → PDF → Epic en 1 clic',
-                'Soumission automatisée, réponse en 2h',
-                'Protection calibrée pour le métier exact',
-                'Analyse annuelle proactive des risques',
-                'Routing intelligent vers le bon assureur',
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3 mb-3 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                  <span className="mt-0.5 flex-shrink-0" style={{ color: '#22c55e' }}>✓</span>
-                  {item}
-                </div>
-              ))}
+            {/* Card Verte */}
+            <div className="bg-[#111] border border-[#16a34a]/30 rounded-xl p-8 shadow-[0_0_30px_rgba(22,163,74,0.1)]">
+              <h3 className="text-2xl font-bold text-[#16a34a] mb-6">✓ Le modèle Copilote</h3>
+              <ul className="space-y-4 text-gray-300">
+                <li className="flex gap-3"><span>-</span> JotForm intelligent → PDF → Epic en 1 clic</li>
+                <li className="flex gap-3"><span>-</span> Scoring automatique du risque par secteur</li>
+                <li className="flex gap-3"><span>-</span> Analyse annuelle proactive des risques</li>
+                <li className="flex gap-3"><span>-</span> Routing intelligent vers le bon assureur</li>
+                <li className="flex gap-3"><span>-</span> 75-85% du temps BMS libéré</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ COMMENT ÇA MARCHE — 3 ÉTAPES ═══ */}
-      <section className="py-24 px-6" style={{ background: '#030712' }}>
-        <div className="max-w-5xl mx-auto text-center">
-          <span className="text-xs font-bold tracking-widest uppercase mb-3 block" style={{ color: '#60a5fa' }}>
-            Comment ça marche
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 leading-tight">
-            De zéro à couvert :<br />
-            <em className="not-italic" style={{ color: '#E9711C' }}>trois étapes, pas trente</em>
+      {/* SECTION 3 : 3 ÉTAPES */}
+      <section className="py-24 bg-[#060d1b] px-4">
+        <div className="container mx-auto max-w-5xl text-center">
+          <span className="text-[#E9711C] font-bold text-sm tracking-wider uppercase mb-2 block">COMMENT ÇA MARCHE</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-16">
+            De zéro à couvert : <span className="text-[#E9711C]">trois étapes, pas trente</span>
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { num: '01', icon: '🎯', title: 'Identifiez votre profil', desc: 'Répondez à 5 questions sur votre secteur. En 2 minutes, vous savez exactement quelles protections sont essentielles.' },
-              { num: '02', icon: '⚡', title: 'Soumission express', desc: 'Votre JotForm pré-rempli est acheminé aux meilleurs assureurs du Québec. Le courtier compare et vous revient en 2h.' },
-              { num: '03', icon: '✈️', title: 'Volez protégé', desc: 'Couvert et dans Epic. Votre Copilote surveille vos risques toute l\'année et vous avise si quelque chose doit changer.' },
-            ].map((step) => (
-              <div
-                key={step.num}
-                className="rounded-2xl p-8 text-left"
-                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}
-              >
-                <div className="text-5xl font-black mb-4" style={{ color: 'rgba(255,255,255,0.06)' }}>{step.num}</div>
-                <div className="text-3xl mb-3">{step.icon}</div>
-                <h3 className="text-white font-bold text-lg mb-3">{step.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>{step.desc}</p>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-3 gap-8 text-left">
+            <div className="bg-[#030712] p-8 rounded-xl border border-white/5">
+              <div className="text-4xl mb-4">01</div>
+              <h3 className="text-xl font-bold mb-2">🎯 Identifiez votre profil</h3>
+              <p className="text-gray-400">Répondez au formulaire intelligent 10 secteurs</p>
+            </div>
+            <div className="bg-[#030712] p-8 rounded-xl border border-white/5">
+              <div className="text-4xl mb-4">02</div>
+              <h3 className="text-xl font-bold mb-2">⚡ Soumission en 2h</h3>
+              <p className="text-gray-400">Notre AI analyse votre dossier</p>
+            </div>
+            <div className="bg-[#030712] p-8 rounded-xl border border-white/5">
+              <div className="text-4xl mb-4">03</div>
+              <h3 className="text-xl font-bold mb-2">✈️ Volez protégé</h3>
+              <p className="text-gray-400">PDF vers Epic, courtier gère la suite</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ 10 SECTEURS ═══ */}
-      <section id="secteurs" className="py-24 px-6" style={{ background: '#070d1a' }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest uppercase mb-3 block" style={{ color: '#E9711C' }}>
-              Secteurs couverts
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-              10 marchés de niche.<br />
-              <em className="not-italic" style={{ color: '#E9711C' }}>Un seul copilote.</em>
-            </h2>
-          </div>
+      {/* SECTION 4 : 10 SECTEURS */}
+      <section id="secteurs" className="py-24 bg-[#030712] px-4">
+        <div className="container mx-auto max-w-6xl text-center">
+          <span className="text-[#E9711C] font-bold text-sm tracking-wider uppercase mb-2 block">SECTEURS COUVERTS</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-12">
+            10 marchés de niche. <span className="text-[#E9711C]">Un seul copilote.</span>
+          </h2>
+
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {SECTEURS.map((s) => (
-              <div
-                key={s.nom}
-                className="rounded-2xl p-6 text-center transition-all cursor-pointer"
-                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}
-              >
-                <div className="text-4xl mb-3">{s.emoji}</div>
-                <div className="text-white font-semibold text-sm mb-1">{s.nom}</div>
-                <div className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>{s.desc}</div>
-              </div>
-            ))}
+            <div className="p-6 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors">🏗️ Construction</div>
+            <div className="p-6 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors">🚛 Flotte</div>
+            <div className="p-6 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors">🏢 Immobilier</div>
+            <div className="p-6 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors">💼 Professionnel</div>
+            <div className="p-6 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors">🏪 Commercial</div>
+            <div className="p-6 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors">🏨 Hospitalité</div>
+            <div className="p-6 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors">🏭 Fabrication</div>
+            <div className="p-6 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors">🌾 Agricole</div>
+            <div className="p-6 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors">🏥 Santé</div>
+            <div className="p-6 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors">🛡️ Sécurité</div>
           </div>
         </div>
       </section>
 
-      {/* ═══ ROI STATS ═══ */}
-      <section className="py-20 px-6" style={{ background: '#030712', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-        <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 text-center">
-          {[
-            { val: '75-85%', label: 'du temps BMS libéré', color: '#60a5fa' },
-            { val: '22 500$', label: 'ROI annuel / courtier', color: '#E9711C' },
-            { val: '< 3 mois', label: 'payback garanti', color: '#4ade80' },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <div className="text-5xl font-black mb-2" style={{ color: stat.color }}>{stat.val}</div>
-              <div className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>{stat.label}</div>
+      {/* SECTION 5 : ROI STATS */}
+      <section className="py-20 bg-[#060d1b] border-y border-white/5 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <div className="grid md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+            <div className="py-4 md:py-0">
+              <div className="text-5xl font-extrabold text-[#2563EB] mb-2">75-85%</div>
+              <p className="text-gray-300 font-medium">du temps BMS libéré</p>
             </div>
-          ))}
+            <div className="py-4 md:py-0">
+              <div className="text-5xl font-extrabold text-[#E9711C] mb-2">22 500$</div>
+              <p className="text-gray-300 font-medium">ROI annuel / courtier</p>
+            </div>
+            <div className="py-4 md:py-0">
+              <div className="text-5xl font-extrabold text-[#16a34a] mb-2">&lt; 3 mois</div>
+              <p className="text-gray-300 font-medium">payback garanti</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ═══ CTA FINAL ═══ */}
-      <section
-        className="py-28 px-6 text-center"
-        style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(233,113,28,0.1) 0%, transparent 60%), radial-gradient(ellipse at 30% 100%, rgba(37,99,235,0.08) 0%, transparent 60%), #030712',
-        }}
+      {/* SECTION 6 : CTA FINAL */}
+      <section 
+        className="py-32 px-4 text-center"
+        style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(233,113,28,0.15), #030712)' }}
       >
-        <div className="max-w-2xl mx-auto">
-          <span className="text-xs font-bold tracking-widest uppercase mb-4 block" style={{ color: '#E9711C' }}>
-            Prêt à passer au niveau supérieur ?
-          </span>
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Votre temps vaut<br />
-            <em className="not-italic" style={{ color: '#E9711C' }}>22 500$ par an</em>
+        <div className="container mx-auto max-w-3xl">
+          <span className="text-gray-400 font-bold text-sm tracking-wider uppercase mb-4 block">PRÊT À PASSER AU NIVEAU SUPÉRIEUR ?</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Votre temps vaut <span className="text-[#E9711C]">22 500$ par an</span>
           </h2>
-          <p className="mb-10 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>
+          
+          <p className="text-xl text-gray-300 mb-10">
             149$/mois par courtier · Essai 14 jours · Annulable en tout temps
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/soumission"
-              className="inline-flex items-center justify-center gap-2 text-white font-bold px-10 py-5 rounded-2xl text-lg transition-all hover:-translate-y-0.5"
-              style={{
-                background: 'linear-gradient(180deg, #f0882e 0%, #E9711C 45%, #c95a0a 100%)',
-                boxShadow: '0 8px 32px rgba(233,113,28,0.4)',
-              }}
-            >
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link href="/#construis" className="bg-[#E9711C] hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-lg transition-colors text-lg">
               ⚡ Commencer maintenant
             </Link>
-            <a
-              href="tel:5146222163"
-              className="inline-flex items-center justify-center gap-2 text-white font-semibold px-10 py-5 rounded-2xl text-lg transition-all"
-              style={{ background: 'rgba(255,255,255,0.05)', border: '1.5px solid rgba(255,255,255,0.15)' }}
-            >
+            <a href="tel:514-622-2163" className="border border-white/30 hover:bg-white/5 text-white font-bold py-4 px-10 rounded-lg transition-colors text-lg">
               📞 514-622-2163
             </a>
           </div>
         </div>
       </section>
-
-    </main>
+    </div>
   );
 }

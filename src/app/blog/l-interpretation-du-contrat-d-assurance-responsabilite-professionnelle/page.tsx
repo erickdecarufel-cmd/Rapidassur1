@@ -1,0 +1,71 @@
+'use client';
+
+import { Header } from '@/components/header';
+import { Footer } from '@/components/footer';
+import { Calendar, Tag } from 'lucide-react';
+import Image from 'next/image';
+import { Breadcrumb } from '@/components/breadcrumb';
+
+export default function Page() {
+    const post = {
+        title: "L'Interprétation du Contrat d'Assurance Responsabilité Professionnelle",
+        imageUrl: '/images/blog/interpretation-contrat.jpg',
+        category: 'Assurance Responsabilité',
+        date: '2024-07-22',
+        content: `
+            <p>Le contrat d'assurance responsabilité professionnelle est un document complexe, dont la lecture peut sembler ardue. Pourtant, une bonne compréhension de ses clauses est fondamentale pour savoir ce qui est couvert... et ce qui ne l'est pas. Voici quelques principes clés pour vous aider à y voir plus clair.</p>
+
+            <h2 class="text-2xl font-bold my-4">1. La Règle de l'Interprétation en Faveur de l'Assuré</h2>
+            <p>C'est un principe fondamental en droit des assurances. En cas d'ambiguïté, un tribunal interprétera généralement le contrat <strong>en faveur de l'assuré</strong>. Les assureurs rédigent les contrats, ils ont donc la responsabilité de le faire de manière claire et précise. Si une clause est floue, l'assuré ne devrait pas en subir les conséquences.</p>
+            <p>Cependant, il ne faut pas se reposer uniquement sur ce principe. Une clause peut sembler claire pour un tribunal même si elle ne l'est pas pour vous. La meilleure approche est toujours de clarifier les points de doute avant la souscription.</p>
+
+            <h2 class="text-2xl font-bold my-4">2. Les Clauses d'Exclusion : à Lire avec la Plus Grande Attention</h2>
+            <p>Les exclusions définissent ce que la police ne couvre pas. Elles sont aussi importantes que la clause de couverture elle-même. On distingue deux types d'exclusions :</p>
+            <ul class="list-disc pl-5 space-y-2">
+                <li><strong>Exclusions absolues :</strong> Celles-ci excluent un risque dans toutes les circonstances. Par exemple, les actes frauduleux ou intentionnels sont presque toujours exclus.</li>
+                <li><strong>Exclusions relatives :</strong> Celles-ci excluent un risque, mais prévoient des exceptions. Par exemple, une exclusion pour les dommages matériels pourrait contenir une exception qui couvre les dommages aux données électroniques.</li>
+            </ul>
+            <p>Il est crucial de lire chaque exclusion et de vous demander : "Est-ce que cette exclusion pourrait s'appliquer à mes activités ?". Si la réponse est oui, il faut en discuter avec son courtier.</p>
+
+            <h2 class="text-2xl font-bold my-4">3. L'Importance des Définitions</h2>
+            <p>La section des définitions du contrat est votre dictionnaire. Des termes comme "Assuré", "Activité professionnelle", "Sinistre" ou "Dommage corporel" ont une signification très précise dans le contexte du contrat. Ne présumez jamais du sens d'un mot. Une mauvaise interprétation d'un terme clé peut changer complètement la portée de votre couverture.</p>
+
+            <h2 class="text-2xl font-bold my-4">4. "Claims-Made" vs "Occurrence"</h2>
+            <p>La plupart des polices de responsabilité professionnelle sont sur une base "claims-made" (réclamation faite). Cela signifie que la police qui vous couvre est celle qui est <strong>en vigueur au moment où la réclamation est faite contre vous</strong>, et non celle en vigueur au moment où la faute a été commise. C'est une distinction cruciale, notamment lorsque vous changez d'assureur ou partez à la retraite. Cela implique la nécessité d'une "couverture pour les actes antérieurs" (prior acts) pour ne pas créer de vide de couverture.</p>
+
+            <h3 class="text-xl font-bold mt-6 mb-2">Conclusion : Votre Courtier est votre Traducteur</h3>
+            <p>L'interprétation d'un contrat d'assurance n'est pas une tâche facile. Votre courtier est votre meilleur allié. Son rôle est de "traduire" le jargon juridique en termes clairs et de s'assurer que le contrat correspond bien à la réalité de votre pratique professionnelle. N'hésitez jamais à poser des questions, à demander des clarifications et à faire documenter les réponses par écrit. Une bonne compréhension en amont est la clé pour éviter les mauvaises surprises en aval.</p>
+        `
+    };
+
+    return (
+        <div className="flex flex-col min-h-screen bg-background text-foreground">
+            <Header />
+            <main className="flex-grow py-12">
+                <div className="container mx-auto px-4">
+                    <article className="max-w-4xl mx-auto">
+                        <header className="mb-8">
+                            <div className="mb-4">
+                                <Breadcrumb items={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} />
+                            </div>
+                            {post.imageUrl && (
+                                <div className="relative w-full h-72 md:h-96 rounded-2xl overflow-hidden mb-6">
+                                    <Image src={post.imageUrl} alt={`Illustration : ${post.title}`} fill style={{ objectFit: 'cover' }} priority />
+                                </div>
+                            )}
+                            <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-4">
+                                {post.category && <div className="flex items-center"><Tag className="mr-2 h-4 w-4 text-accent" /><span>{post.category}</span></div>}
+                                {post.date && <div className="flex items-center"><Calendar className="mr-2 h-4 w-4 text-accent" /><span>{post.date}</span></div>}
+                            </div>
+                            <h1 className="text-3xl md:text-4xl font-bold text-primary leading-tight">{post.title}</h1>
+                        </header>
+                        {post.content && (
+                            <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
+                        )}
+                    </article>
+                </div>
+            </main>
+            <Footer />
+        </div>
+    );
+}

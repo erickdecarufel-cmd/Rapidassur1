@@ -1,0 +1,1 @@
+export const Breadcrumb = ({ items }: { items: { label: string; href?: string }[] }) => <nav>{items.map(i => i.label).join(' > ')}</nav>;

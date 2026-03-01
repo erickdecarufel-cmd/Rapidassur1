@@ -27,6 +27,8 @@ const ExtractOutputSchema = z.object({
     error: z.string().optional()
 });
 
+type ExtractInput = z.infer<typeof ExtractInputSchema>;
+
 /**
  * Flow principal d'extraction
  * Invoquable depuis le code OU depuis l'interface Genkit (localhost:4000)
@@ -37,7 +39,7 @@ export const extractionFlow = ai.defineFlow(
         inputSchema: ExtractInputSchema,
         outputSchema: ExtractOutputSchema,
     },
-    async (input) => {
+    async (input: ExtractInput) => {
         const { text, existingFiche, forceSource } = input;
         const warnings: string[] = [];
 

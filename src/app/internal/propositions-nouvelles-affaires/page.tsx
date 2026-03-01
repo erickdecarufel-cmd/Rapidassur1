@@ -290,7 +290,7 @@ export default function PropositionsNouvellesAffaires() {
 
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
-          <Link href="/internal" className="text-gray-400 hover:text-gray-600">
+          <Link href="/internal/dashboard" className="text-gray-400 hover:text-gray-600">
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>

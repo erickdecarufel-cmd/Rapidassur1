@@ -184,9 +184,11 @@ export function createDataPoint<T>(
  */
 export function mergeDataPoint<T>(
     existing: DataPoint<T> | undefined,
-    incoming: DataPoint<T>
-): DataPoint<T> {
+    incoming: DataPoint<T> | undefined
+): DataPoint<T> | undefined {
+    if (!existing && !incoming) return undefined;
     if (!existing) return incoming;
+    if (!incoming) return existing;
 
     // Si confiance supérieure, remplacer
     if (incoming.confidence > existing.confidence) {

@@ -8,7 +8,8 @@ import {
     RepondantRBQ,
     InfoREQ,
     InfoAPCHQ,
-    InfoGCR
+    InfoGCR,
+    DataSource
 } from './types-v2';
 
 /**
@@ -206,8 +207,8 @@ function mergeInfoGCR(
 /**
  * Extrait toutes les sources d'une fiche partielle
  */
-function extractSources(fiche: Partial<FicheDataV2>): string[] {
-    const sources = new Set<string>();
+function extractSources(fiche: Partial<FicheDataV2>): DataSource[] {
+    const sources = new Set<DataSource>();
 
     // Fonction récursive pour extraire les sources
     function extractFromObject(obj: any) {

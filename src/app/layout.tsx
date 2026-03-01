@@ -1,173 +1,85 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
 import './globals.css';
+import Link from 'next/link';
+import { ReactNode } from 'react';
 
-export const metadata: Metadata = {
-  title: { default: 'RapidAssur Copilote', template: '%s | RapidAssur' },
-  description: 'RapidAssur Copilote — La plateforme SaaS de courtage augmenté par IA pour courtiers en assurance dommages des entreprises.',
-  keywords: ['assurance entreprise', 'courtier assurance', 'assurance commerciale', 'assurance construction', 'RapidAssur', 'Quebec'],
-  authors: [{ name: 'Erick de Carufel', url: 'https://rapidassur.com' }],
-  openGraph: { type: 'website', locale: 'fr_CA', url: 'https://rapidassur.com', siteName: 'RapidAssur Copilote' },
-};
-
-function Header() {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 h-16 flex items-center"
-      style={{ background: 'rgba(3,7,18,0.90)', backdropFilter: 'blur(18px)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}
-    >
-      <div className="max-w-6xl mx-auto px-6 w-full flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 text-white no-underline hover:opacity-90 transition-opacity">
-          <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
-            <path d="M18 3L4 9v10c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18V9L18 3z" fill="url(#hg1)" />
-            <path d="M12 18l4 4 8-8" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-            <defs>
-              <linearGradient id="hg1" x1="4" y1="3" x2="32" y2="33" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#0F3460" />
-                <stop offset="1" stopColor="#2563EB" />
-              </linearGradient>
-            </defs>
-          </svg>
-          <span className="font-bold text-base tracking-tight">
-            Rapid
-            <span style={{ background: 'linear-gradient(90deg, #2563EB, #E9711C)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              Assur
-            </span>{' '}
-            <span style={{ fontWeight: 300, color: 'rgba(255,255,255,0.45)', fontSize: '13px' }}>Copilote</span>
-          </span>
-        </Link>
-
-        {/* Nav */}
-        <nav className="hidden md:flex items-center gap-7">
-          {[
-            { href: '/#secteurs', label: 'Spécialités' },
-            { href: '/internal/dashboard', label: 'Cockpit' },
-            { href: '/extraction', label: 'Extraction IA' },
-          ].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium transition-colors"
-              style={{ color: 'rgba(255,255,255,0.55)' }}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* CTA Téléphone */}
-        <a
-          href="tel:5146222163"
-          className="flex items-center gap-1.5 text-sm font-semibold transition-colors"
-          style={{ color: '#E9711C' }}
-        >
-          📞 514-622-2163
-        </a>
-      </div>
-    </header>
-  );
-}
-
-function Footer() {
-  return (
-    <footer
-      className="py-14 px-6"
-      style={{ background: '#070d1a', borderTop: '1px solid rgba(255,255,255,0.06)' }}
-    >
-      <div className="max-w-5xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-10 mb-10">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <svg width="24" height="24" viewBox="0 0 36 36" fill="none">
-                <path d="M18 3L4 9v10c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18V9L18 3z" fill="url(#fg1)" />
-                <path d="M12 18l4 4 8-8" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    <html lang="fr">
+      <body className="bg-[#030712] text-white font-sans antialiased">
+        
+        {/* HEADER */}
+        <header className="sticky top-0 z-50 w-full border-b border-white/10" style={{ backgroundColor: 'rgba(3,7,18,0.90)', backdropFilter: 'blur(18px)' }}>
+          <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="url(#shield-grad)">
                 <defs>
-                  <linearGradient id="fg1" x1="4" y1="3" x2="32" y2="33" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#0F3460" /><stop offset="1" stopColor="#2563EB" />
+                  <linearGradient id="shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#0F3460" />
+                    <stop offset="100%" stopColor="#2563EB" />
                   </linearGradient>
                 </defs>
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
-              <span className="text-white font-bold text-sm">RapidAssur Copilote v3.0</span>
+              <span>
+                <span className="text-white">Rapid</span>
+                <span className="text-[#2563EB]">Assur</span>
+                <span className="font-normal text-gray-300"> Copilote</span>
+              </span>
+            </Link>
+
+            {/* Navigation */}
+            <nav className="hidden md:flex gap-6 text-sm font-medium text-gray-300">
+              <Link href="/#secteurs" className="hover:text-white transition-colors">Spécialités</Link>
+              <Link href="/internal/dashboard" className="hover:text-white transition-colors">Cockpit</Link>
+              <Link href="/extraction" className="hover:text-white transition-colors">Extraction IA</Link>
+            </nav>
+
+            {/* Phone */}
+            <div className="font-bold text-[#E9711C]">
+              📞 514-622-2163
             </div>
-            <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.35)' }}>
-              Le cerveau prescriptif du courtier en assurance dommages des entreprises au Québec.
-            </p>
           </div>
+        </header>
 
-          {/* Navigation */}
-          <div>
-            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'rgba(255,255,255,0.3)' }}>
-              Navigation
-            </p>
-            {[
-              { href: '/soumission', label: 'Construis ta prime' },
-              { href: '/internal/dashboard', label: 'Espace courtier' },
-              { href: '/extraction', label: 'Extraction IA' },
-            ].map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="block text-sm mb-2 transition-colors"
-                style={{ color: 'rgba(255,255,255,0.45)' }}
-              >
-                {l.label}
-              </Link>
-            ))}
+        {/* CONTENU PRINCIPAL */}
+        <main className="min-h-screen">
+          {children}
+        </main>
+
+        {/* FOOTER */}
+        <footer className="bg-[#070d1a] border-t border-white/10 py-12 text-sm text-gray-400">
+          <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            {/* Col 1 */}
+            <div>
+              <div className="flex items-center gap-2 font-bold text-lg mb-4 text-white">
+                <span className="text-white">Rapid</span>
+                <span className="text-[#2563EB]">Assur</span>
+              </div>
+              <p>RapidAssur Copilote v3.0</p>
+              <p className="mt-2">Votre copilote en assurance de niche, tous métiers, au Québec.</p>
+            </div>
+            {/* Col 2 */}
+            <div className="flex flex-col gap-2">
+              <h4 className="font-bold text-white mb-2">Navigation</h4>
+              <Link href="/#construis" className="hover:text-[#E9711C] transition-colors">Construis ta prime</Link>
+              <Link href="/internal/dashboard" className="hover:text-[#E9711C] transition-colors">Espace courtier</Link>
+              <Link href="/extraction" className="hover:text-[#E9711C] transition-colors">Extraction IA</Link>
+            </div>
+            {/* Col 3 */}
+            <div className="flex flex-col gap-2">
+              <h4 className="font-bold text-white mb-2">Contact</h4>
+              <p>Erick de Carufel</p>
+              <p>erick.decarufel@rapidassur.com</p>
+              <p>514-622-2163</p>
+            </div>
           </div>
-
-          {/* Contact */}
-          <div>
-            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'rgba(255,255,255,0.3)' }}>
-              Contact
-            </p>
-            <p className="text-sm font-semibold text-white mb-1">Erick de Carufel</p>
-            <a
-              href="mailto:erick.decarufel@rapidassur.com"
-              className="block text-sm mb-2 transition-colors"
-              style={{ color: 'rgba(255,255,255,0.45)' }}
-            >
-              erick.decarufel@rapidassur.com
-            </a>
-            <a
-              href="tel:5146222163"
-              className="text-sm font-semibold transition-colors"
-              style={{ color: '#E9711C' }}
-            >
-              514-622-2163
-            </a>
+          <div className="container mx-auto px-4 pt-8 border-t border-white/10 text-center flex flex-col gap-2">
+            <p>© 2026 RapidAssur — Tous droits réservés</p>
+            <p className="text-xs text-gray-500">⚠ Les analyses IA sont des suggestions — toujours valider avec un courtier certifié.</p>
           </div>
-        </div>
+        </footer>
 
-        {/* Bottom bar */}
-        <div
-          className="pt-6 flex flex-col md:flex-row justify-between items-center gap-2"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
-        >
-          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>
-            © {new Date().getFullYear()} RapidAssur — Tous droits réservés
-          </p>
-          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.15)' }}>
-            ⚠️ Les analyses IA sont des suggestions — toujours valider avec un courtier certifié.
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="fr" className="scroll-smooth">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
-      <body className="font-sans antialiased" style={{ background: '#030712' }}>
-        <Header />
-        <div className="pt-16">{children}</div>
-        <Footer />
       </body>
     </html>
   );

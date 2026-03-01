@@ -1,4 +1,5 @@
-import { ai } from '@/ai/genkit';
+import { generate } from '@genkit-ai/ai';
+import { DEFAULT_MODEL_NAME } from '@/ai/genkit';
 import { z } from 'zod';
 
 /**
@@ -41,7 +42,8 @@ export class BaseExtractor {
                 console.log(`[${this.config.sourceName}] 🔄 Tentative ${attempt}/${maxRetries}...`);
 
                 // Appel à l'IA
-                const { output } = await ai.generate({
+                const { output } = await generate({
+                    model: DEFAULT_MODEL_NAME,
                     config: { temperature: this.config.temperature },
                     prompt: [
                         { text: this.config.promptTemplate },
