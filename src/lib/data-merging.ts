@@ -205,7 +205,34 @@ function mergeInfoGCR(
 }
 
 /**
- * Extrait toutes les sources d'une fiche partielle */ function extractSources(fiche: Partial<FicheDataV2>): DataSource[] { const sources = new Set<DataSource>();  // Fonction récursive pour extraire les sources function extractFromObject(obj: any) { if (!obj) return;  if (obj.source) { sources.add(obj.source); }  if (typeof obj === 'object') { Object.values(obj).forEach(value => { if (value && typeof value === 'object') { extractFromObject(value); } }); } }  extractFromObject(fiche); return Array.from(sources); }  /** * Calcule le taux de complétude d'une fiche
+ * Extrait toutes les sources d'une fiche partielle
+ */
+function extractSources(fiche: Partial<FicheDataV2>): DataSource[] {
+    const sources = new Set<DataSource>();
+
+    // Fonction récursive pour extraire les sources
+    function extractFromObject(obj: any) {
+        if (!obj) return;
+
+        if (obj.source) {
+            sources.add(obj.source);
+        }
+
+        if (typeof obj === 'object') {
+            Object.values(obj).forEach(value => {
+                if (value && typeof value === 'object') {
+                    extractFromObject(value);
+                }
+            });
+        }
+    }
+
+    extractFromObject(fiche);
+    return Array.from(sources);
+}
+
+/**
+ * Calcule le taux de complétude d'une fiche
  */
 export function calculateFicheCompleteness(fiche: FicheDataV2): number {
     const criticalFields = [

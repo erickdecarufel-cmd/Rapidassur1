@@ -9,8 +9,16 @@
 export type DataSource =
     | 'RBQ'           // Régie du bâtiment du Québec
     | 'REQ'           // Registre des entreprises du Québec
-    | 'APCHQ'         // Association provinciale des constructeurs d'habitations du Québec | 'CTQ'           // Corporation des maîtres électriciens du Québec | 'GCR'           // Garantie de construction résidentielle | 'MAPAQ'         // Ministère de l'Agriculture, des Pêcheries et de l'Alimentation | 'RACJ'          // Registre des autorités de certification judiciaire | 'MANUAL'        // Saisie manuelle par l'utilisateur
-    | 'INFERRED';     // Déduit par l'IA  /** * Usages possibles d'une donnée
+    | 'APCHQ'         // Association provinciale des constructeurs d'habitations du Québec
+    | 'CTQ'           // Corporation des maîtres électriciens du Québec
+    | 'GCR'           // Garantie de construction résidentielle
+    | 'MAPAQ'         // Ministère de l'Agriculture, des Pêcheries et de l'Alimentation
+    | 'RACJ'          // Registre des autorités de certification judiciaire
+    | 'MANUAL'        // Saisie manuelle par l'utilisateur
+    | 'INFERRED';     // Déduit par l'IA
+
+/**
+ * Usages possibles d'une donnée
  */
 export type DataUsage =
     | 'SUBMISSION'    // Qualification du prospect (soumission)
@@ -27,7 +35,104 @@ export interface DataPoint<T = any> {
     value: T;                    // Valeur de la donnée
     source: DataSource;          // Provenance de la donnée
     timestamp: string;           // ISO 8601 timestamp
-    confidence: number;          // 0-1, confiance dans l'extraction usage: DataUsage[];          // Usages prévus de cette donnée notes?: string;              // Notes manuelles optionnelles }  /** * Informations de contact stratifiées */ export interface ContactInfo { telephone?: DataPoint<string>; telecopieur?: DataPoint<string>; courriel?: DataPoint<string>; siteWeb?: DataPoint<string>; }  /** * Adresse stratifiée */ export interface Address { adresseComplete?: DataPoint<string>; noCivique?: DataPoint<string>; rue?: DataPoint<string>; ville?: DataPoint<string>; province?: DataPoint<string>; codePostal?: DataPoint<string>; pays?: DataPoint<string>; }  /** * Licence RBQ stratifiée */ export interface LicenceRBQ { numero?: DataPoint<string>; statut?: DataPoint<string>; dateObtention?: DataPoint<string>; dateExpiration?: DataPoint<string>; datePaiement?: DataPoint<string>; sousCategories?: DataPoint<string[]>; restrictions?: DataPoint<string[]>; cautionnement?: { montant?: DataPoint<string>; emetteur?: DataPoint<string>; }; }  /** * Répondant RBQ stratifié */ export interface RepondantRBQ { nom?: DataPoint<string>; prenom?: DataPoint<string>; numeroLicence?: DataPoint<string>; }  /** * Informations REQ stratifiées */ export interface InfoREQ { neq?: DataPoint<string>; raisonSociale?: DataPoint<string>; formeJuridique?: DataPoint<string>; dateImmatriculation?: DataPoint<string>; statut?: DataPoint<string>; activitePrincipale?: DataPoint<string>; }  /** * Informations APCHQ stratifiées */ export interface InfoAPCHQ { numeroMembre?: DataPoint<string>; dateAdhesion?: DataPoint<string>; statut?: DataPoint<string>; certifications?: DataPoint<string[]>; activites?: DataPoint<string[]>; // "Types de travaux" }  /** * Informations GCR stratifiées */ export interface InfoGCR { numeroLicence?: DataPoint<string>; statut?: DataPoint<string>; dateObtention?: DataPoint<string>; dateExpiration?: DataPoint<string>; typeGarantie?: DataPoint<string>; }  /** * Fiche nominative complète V2 - Stratifiée */ export interface FicheDataV2 { // Identité de base nomEntreprise?: DataPoint<string>; neq?: DataPoint<string>;  // Champs globaux enrichis activites?: DataPoint<string[]>; // Liste consolidée d'activités
+    confidence: number;          // 0-1, confiance dans l'extraction
+    usage: DataUsage[];          // Usages prévus de cette donnée
+    notes?: string;              // Notes manuelles optionnelles
+}
+
+/**
+ * Informations de contact stratifiées
+ */
+export interface ContactInfo {
+    telephone?: DataPoint<string>;
+    telecopieur?: DataPoint<string>;
+    courriel?: DataPoint<string>;
+    siteWeb?: DataPoint<string>;
+}
+
+/**
+ * Adresse stratifiée
+ */
+export interface Address {
+    adresseComplete?: DataPoint<string>;
+    noCivique?: DataPoint<string>;
+    rue?: DataPoint<string>;
+    ville?: DataPoint<string>;
+    province?: DataPoint<string>;
+    codePostal?: DataPoint<string>;
+    pays?: DataPoint<string>;
+}
+
+/**
+ * Licence RBQ stratifiée
+ */
+export interface LicenceRBQ {
+    numero?: DataPoint<string>;
+    statut?: DataPoint<string>;
+    dateObtention?: DataPoint<string>;
+    dateExpiration?: DataPoint<string>;
+    datePaiement?: DataPoint<string>;
+    sousCategories?: DataPoint<string[]>;
+    restrictions?: DataPoint<string[]>;
+    cautionnement?: {
+        montant?: DataPoint<string>;
+        emetteur?: DataPoint<string>;
+    };
+}
+
+/**
+ * Répondant RBQ stratifié
+ */
+export interface RepondantRBQ {
+    nom?: DataPoint<string>;
+    prenom?: DataPoint<string>;
+    numeroLicence?: DataPoint<string>;
+}
+
+/**
+ * Informations REQ stratifiées
+ */
+export interface InfoREQ {
+    neq?: DataPoint<string>;
+    raisonSociale?: DataPoint<string>;
+    formeJuridique?: DataPoint<string>;
+    dateImmatriculation?: DataPoint<string>;
+    statut?: DataPoint<string>;
+    activitePrincipale?: DataPoint<string>;
+}
+
+/**
+ * Informations APCHQ stratifiées
+ */
+export interface InfoAPCHQ {
+    numeroMembre?: DataPoint<string>;
+    dateAdhesion?: DataPoint<string>;
+    statut?: DataPoint<string>;
+    certifications?: DataPoint<string[]>;
+    activites?: DataPoint<string[]>; // "Types de travaux"
+}
+
+/**
+ * Informations GCR stratifiées
+ */
+export interface InfoGCR {
+    numeroLicence?: DataPoint<string>;
+    statut?: DataPoint<string>;
+    dateObtention?: DataPoint<string>;
+    dateExpiration?: DataPoint<string>;
+    typeGarantie?: DataPoint<string>;
+}
+
+/**
+ * Fiche nominative complète V2 - Stratifiée
+ */
+export interface FicheDataV2 {
+    // Identité de base
+    nomEntreprise?: DataPoint<string>;
+    neq?: DataPoint<string>;
+
+    // Champs globaux enrichis
+    activites?: DataPoint<string[]>; // Liste consolidée d'activités
     autresContacts?: DataPoint<string[]>; // Liste de contacts capturés (ex: "Joindre cet entrepreneur")
 
     // Contact
@@ -106,7 +211,12 @@ export function mergeDataPoint<T>(
         }
     }
 
-    // Sinon, garder l'existant mais fusionner les usages return { ...existing, usage: Array.from(new Set([...existing.usage, ...incoming.usage])) }; }  /** * Calcule le taux de complétude d'une fiche
+    // Sinon, garder l'existant mais fusionner les usages
+    return { ...existing, usage: Array.from(new Set([...existing.usage, ...incoming.usage])) };
+}
+
+/**
+ * Calcule le taux de complétude d'une fiche
  */
 export function calculateCompleteness(fiche: FicheDataV2): number {
     const allFields = [

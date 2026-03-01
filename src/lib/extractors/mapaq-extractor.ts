@@ -17,4 +17,26 @@ Extrais les informations de permis alimentaire.
 RÈGLES :
 - Cherche le "Numéro de permis".
 - Identifie la "Catégorie" (ex: Restauration).
-- Note la date d'échéance. `;  export class MAPAQExtractor extends BaseExtractor { constructor() { const config: ExtractorConfig = { sourceName: 'MAPAQ', schema: mapaqSchema, promptTemplate: mapaqPrompt, temperature: 0.0, maxRetries: 3 }; super(config); }  async extractToFiche(content: string): Promise<Partial<FicheDataV2>> { const rawData = await this.extract(content); return { nomEntreprise: rawData.nomExploitant ? createDataPoint(rawData.nomExploitant, 'MAPAQ', ['COMPLIANCE'], 0.9) : undefined, // TODO: Ajouter champs spécifiques MAPAQ }; } } 
+- Note la date d'échéance.
+`;
+
+export class MAPAQExtractor extends BaseExtractor {
+    constructor() {
+        const config: ExtractorConfig = {
+            sourceName: 'MAPAQ',
+            schema: mapaqSchema,
+            promptTemplate: mapaqPrompt,
+            temperature: 0.0,
+            maxRetries: 3
+        };
+        super(config);
+    }
+
+    async extractToFiche(content: string): Promise<Partial<FicheDataV2>> {
+        const rawData = await this.extract(content);
+        return {
+            nomEntreprise: rawData.nomExploitant ? createDataPoint(rawData.nomExploitant, 'MAPAQ', ['COMPLIANCE'], 0.9) : undefined,
+            // TODO: Ajouter champs spécifiques MAPAQ
+        };
+    }
+}
