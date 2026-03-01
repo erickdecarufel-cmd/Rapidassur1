@@ -5,6 +5,7 @@ const nextConfig = {
     domains: [
       'firebasestorage.googleapis.com',
       'storage.googleapis.com',
+      'picsum.photos',
     ],
   },
   experimental: {
