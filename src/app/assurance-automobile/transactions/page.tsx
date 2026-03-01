@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, Suspense } from 'react';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Breadcrumb } from '@/components/breadcrumb';
@@ -50,7 +50,7 @@ label, children }) => (
 );
 
 
-const DemandeClientAssuranceAutoRapide: React.FC = () => {
+const DemandeClientAssuranceAutoRapideContent: React.FC = () => {
     const { toast } = useToast();
     const searchParams = useSearchParams();
     const [financement, setFinancement] = useState<'achat' | 'location' | null>(null);
@@ -646,4 +646,13 @@ Prochaines étapes:
         </Card>
     );
 }
+
+const DemandeClientAssuranceAutoRapide: React.FC = () => {
+    return (
+        <Suspense fallback={<div>Chargement des transactions...</div>}>
+            <DemandeClientAssuranceAutoRapideContent />
+        </Suspense>
+    );
+};
+
 export default DemandeClientAssuranceAutoRapide;
