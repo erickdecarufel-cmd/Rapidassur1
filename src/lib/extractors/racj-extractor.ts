@@ -12,12 +12,7 @@ const racjSchema = z.object({
 
 const racjPrompt = `
 Tu es un expert en extraction de données pour la RACJ (Régie des alcools, des courses et des jeux).
-Extrais les informations de permis d'alcool.
-
-RÈGLES :
-- Cherche le "Numéro de permis".
-- Identifie le "Type de permis".
-- Cherche la capacité d'accueil si mentionnée.
+Extrais les informations de permis d'alcool.  RÈGLES : - Cherche le "Numéro de permis". - Identifie le "Type de permis". - Cherche la capacité d'accueil si mentionnée.
 `;
 
 export class RACJExtractor extends BaseExtractor {

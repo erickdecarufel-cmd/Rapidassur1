@@ -1,12 +1,2 @@
 /**
- * Point d'entrée centralisé pour tous les extracteurs
- */
-
-export { BaseExtractor } from './base-extractor';
-export type { ExtractorConfig } from './base-extractor';
-
-export { RBQExtractor } from './rbq-extractor';
-export { REQExtractor } from './req-extractor';
-export { GCRExtractor } from './gcr-extractor';
-
-export { ExtractorFactory } from './extractor-factory';
+ * Point d'entrée centralisé pour tous les extracteurs */  export { BaseExtractor } from './base-extractor'; export type { ExtractorConfig } from './base-extractor';  export { RBQExtractor } from './rbq-extractor'; export { REQExtractor } from './req-extractor'; export { GCRExtractor } from './gcr-extractor';  export { ExtractorFactory } from './extractor-factory'; 

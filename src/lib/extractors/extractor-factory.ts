@@ -17,10 +17,7 @@ export class ExtractorFactory {
     /**
      * Obtient un extracteur pour une source donnée
      * @param source Source de données (RBQ, REQ, GCR, etc.)
-     * @returns Instance de l'extracteur approprié
-     */
-    static getExtractor(source: DataSource): any {
-        // Vérifier si l'instance existe déjà (singleton)
+     * @returns Instance de l'extracteur approprié */ static getExtractor(source: DataSource): any { // Vérifier si l'instance existe déjà (singleton)
         if (this.instances.has(source)) {
             return this.instances.get(source);
         }
@@ -53,29 +50,4 @@ export class ExtractorFactory {
                 throw new Error(`Extracteur non disponible pour la source: ${source}`);
         }
 
-        // Sauvegarder l'instance
-        this.instances.set(source, extractor);
-        return extractor;
-    }
-
-    /**
-     * Vérifie si un extracteur existe pour une source
-     */
-    static hasExtractor(source: DataSource): boolean {
-        return ['RBQ', 'REQ', 'GCR', 'APCHQ', 'CTQ', 'MAPAQ', 'RACJ'].includes(source);
-    }
-
-    /**
-     * Liste toutes les sources supportées
-     */
-    static getSupportedSources(): DataSource[] {
-        return ['RBQ', 'REQ', 'GCR', 'APCHQ', 'CTQ', 'MAPAQ', 'RACJ'];
-    }
-
-    /**
-     * Réinitialise tous les extracteurs (utile pour les tests)
-     */
-    static reset(): void {
-        this.instances.clear();
-    }
-}
+        // Sauvegarder l'instance this.instances.set(source, extractor); return extractor; }  /** * Vérifie si un extracteur existe pour une source */ static hasExtractor(source: DataSource): boolean { return ['RBQ', 'REQ', 'GCR', 'APCHQ', 'CTQ', 'MAPAQ', 'RACJ'].includes(source); }  /** * Liste toutes les sources supportées */ static getSupportedSources(): DataSource[] { return ['RBQ', 'REQ', 'GCR', 'APCHQ', 'CTQ', 'MAPAQ', 'RACJ']; }  /** * Réinitialise tous les extracteurs (utile pour les tests) */ static reset(): void { this.instances.clear(); } } 

@@ -1,16 +1,5 @@
 /**
- * Flow Genkit pour l'extraction de données RapidAssur
- * Ce flow permet de tester et d'exécuter la logique d'extraction via Firebase Studio
- */
-
-import { ai } from '@/ai/genkit';
-import { z } from 'zod';
-import { detectSource, validateContentForExtraction } from '@/lib/source-detection';
-import { ExtractorFactory } from '@/lib/extractors/extractor-factory';
-import { mergeFiches, calculateFicheCompleteness } from '@/lib/data-merging';
-import { FicheDataV2, DataSource } from '@/lib/types-v2';
-
-// Schéma d'entrée pour le flow
+ * Flow Genkit pour l'extraction de données RapidAssur * Ce flow permet de tester et d'exécuter la logique d'extraction via Firebase Studio */  import { ai } from '@/ai/genkit'; import { z } from 'zod'; import { detectSource, validateContentForExtraction } from '@/lib/source-detection'; import { ExtractorFactory } from '@/lib/extractors/extractor-factory'; import { mergeFiches, calculateFicheCompleteness } from '@/lib/data-merging'; import { FicheDataV2, DataSource } from '@/lib/types-v2';  // Schéma d'entrée pour le flow
 const ExtractInputSchema = z.object({
     text: z.string().describe("Le texte brut copié depuis RBQ, REQ, GCR, etc."),
     existingFiche: z.custom<FicheDataV2>().optional().describe("Fiche existante pour enrichissement (JSON)"),
@@ -30,8 +19,7 @@ const ExtractOutputSchema = z.object({
 type ExtractInput = z.infer<typeof ExtractInputSchema>;
 
 /**
- * Flow principal d'extraction
- * Invoquable depuis le code OU depuis l'interface Genkit (localhost:4000)
+ * Flow principal d'extraction * Invoquable depuis le code OU depuis l'interface Genkit (localhost:4000)
  */
 export const extractionFlow = ai.defineFlow(
     {

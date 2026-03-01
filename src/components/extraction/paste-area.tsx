@@ -106,8 +106,4 @@ export function PasteArea({ onAnalyze, isAnalyzing }: PasteAreaProps) {
             )}
 
             <p className="mt-2 text-xs text-slate-400 text-center">
-                L'IA détectera automatiquement la source et structurera les données.
-            </p>
-        </div>
-    );
-}
+                L'IA détectera automatiquement la source et structurera les données. </p> </div> ); } 

@@ -3,32 +3,7 @@ import { BaseExtractor, ExtractorConfig } from './base-extractor';
 import { createDataPoint, FicheDataV2 } from '../types-v2';
 
 /**
- * Schéma Zod pour l'extraction REQ
- */
-const reqSchema = z.object({
-    neq: z.string().optional(),
-    raisonSociale: z.string().optional(),
-    formeJuridique: z.string().optional(),
-    dateImmatriculation: z.string().optional(),
-    statut: z.string().optional(),
-    activitePrincipale: z.string().optional(),
-
-    // Adresse du siège social
-    adresseComplete: z.string().optional(),
-    noCivique: z.string().optional(),
-    rue: z.string().optional(),
-    ville: z.string().optional(),
-    province: z.string().optional(),
-    codePostal: z.string().optional(),
-
-    // Contact (si disponible)
-    telephone: z.string().optional(),
-    courriel: z.string().optional(),
-    siteWeb: z.string().optional()
-});
-
-/**
- * Prompt optimisé pour l'extraction REQ
+ * Schéma Zod pour l'extraction REQ */ const reqSchema = z.object({ neq: z.string().optional(), raisonSociale: z.string().optional(), formeJuridique: z.string().optional(), dateImmatriculation: z.string().optional(), statut: z.string().optional(), activitePrincipale: z.string().optional(),  // Adresse du siège social adresseComplete: z.string().optional(), noCivique: z.string().optional(), rue: z.string().optional(), ville: z.string().optional(), province: z.string().optional(), codePostal: z.string().optional(),  // Contact (si disponible) telephone: z.string().optional(), courriel: z.string().optional(), siteWeb: z.string().optional() });  /** * Prompt optimisé pour l'extraction REQ
  */
 const reqPrompt = `Tu es un expert en extraction de données du REQ (Registre des entreprises du Québec).
 
@@ -37,17 +12,9 @@ OBJECTIF: Extraire TOUTES les informations structurées du texte fourni.
 RÈGLES STRICTES:
 1. Extrait UNIQUEMENT les données présentes dans le texte
 2. Ne jamais inventer ou déduire des informations
-3. Si une donnée n'est pas présente, retourne null pour ce champ
-4. Le NEQ est un identifiant unique de 10 chiffres (format: 1234567890)
-5. Respecte les formats exacts
-
-CHAMPS À EXTRAIRE:
-- neq: Numéro d'entreprise du Québec (10 chiffres)
-- raisonSociale: Nom légal complet de l'entreprise
-- formeJuridique: Forme juridique (ex: "Société par actions", "Entreprise individuelle", "SENC")
-- dateImmatriculation: Date d'immatriculation au REQ (format: YYYY-MM-DD)
-- statut: Statut de l'entreprise (ex: "Immatriculée", "Radiée", "En défaut")
-- activitePrincipale: Description de l'activité principale
+3. Si une donnée n'est pas présente, retourne null pour ce champ 4. Le NEQ est un identifiant unique de 10 chiffres (format: 1234567890) 5. Respecte les formats exacts  CHAMPS À EXTRAIRE: - neq: Numéro d'entreprise du Québec (10 chiffres)
+- raisonSociale: Nom légal complet de l'entreprise - formeJuridique: Forme juridique (ex: "Société par actions", "Entreprise individuelle", "SENC") - dateImmatriculation: Date d'immatriculation au REQ (format: YYYY-MM-DD)
+- statut: Statut de l'entreprise (ex: "Immatriculée", "Radiée", "En défaut") - activitePrincipale: Description de l'activité principale
 
 ADRESSE DU SIÈGE SOCIAL:
 - adresseComplete: Adresse complète du siège social

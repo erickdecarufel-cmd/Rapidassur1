@@ -3,29 +3,7 @@ import { BaseExtractor, ExtractorConfig } from './base-extractor';
 import { createDataPoint, FicheDataV2 } from '../types-v2';
 
 /**
- * Schéma Zod pour l'extraction GCR
- */
-const gcrSchema = z.object({
-    numeroLicence: z.string().optional(),
-    nomEntreprise: z.string().optional(),
-    statut: z.string().optional(),
-    dateObtention: z.string().optional(),
-    dateExpiration: z.string().optional(),
-    typeGarantie: z.string().optional(),
-
-    // Adresse
-    adresseComplete: z.string().optional(),
-    ville: z.string().optional(),
-    province: z.string().optional(),
-    codePostal: z.string().optional(),
-
-    // Contact
-    telephone: z.string().optional(),
-    courriel: z.string().optional()
-});
-
-/**
- * Prompt optimisé pour l'extraction GCR
+ * Schéma Zod pour l'extraction GCR */ const gcrSchema = z.object({ numeroLicence: z.string().optional(), nomEntreprise: z.string().optional(), statut: z.string().optional(), dateObtention: z.string().optional(), dateExpiration: z.string().optional(), typeGarantie: z.string().optional(),  // Adresse adresseComplete: z.string().optional(), ville: z.string().optional(), province: z.string().optional(), codePostal: z.string().optional(),  // Contact telephone: z.string().optional(), courriel: z.string().optional() });  /** * Prompt optimisé pour l'extraction GCR
  */
 const gcrPrompt = `Tu es un expert en extraction de données du GCR (Garantie de construction résidentielle).
 
@@ -34,15 +12,9 @@ OBJECTIF: Extraire TOUTES les informations structurées du texte fourni.
 RÈGLES STRICTES:
 1. Extrait UNIQUEMENT les données présentes dans le texte
 2. Ne jamais inventer ou déduire des informations
-3. Si une donnée n'est pas présente, retourne null pour ce champ
-4. Respecte les formats exacts
-
-CHAMPS À EXTRAIRE:
-- numeroLicence: Numéro de licence GCR
-- nomEntreprise: Nom de l'entreprise détentrice
+3. Si une donnée n'est pas présente, retourne null pour ce champ 4. Respecte les formats exacts  CHAMPS À EXTRAIRE: - numeroLicence: Numéro de licence GCR - nomEntreprise: Nom de l'entreprise détentrice
 - statut: Statut de la licence (ex: "Active", "Suspendue", "Expirée")
-- dateObtention: Date d'obtention de la licence (format: YYYY-MM-DD)
-- dateExpiration: Date d'expiration (format: YYYY-MM-DD)
+- dateObtention: Date d'obtention de la licence (format: YYYY-MM-DD) - dateExpiration: Date d'expiration (format: YYYY-MM-DD)
 - typeGarantie: Type de garantie (ex: "Bâtiment neuf", "Rénovation majeure")
 
 ADRESSE:

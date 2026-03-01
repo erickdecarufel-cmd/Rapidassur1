@@ -13,57 +13,8 @@ export default function Page() {
         category: 'Assurance Responsabilité',
         date: '2024-07-24',
         content: `
-            <p>En assurance responsabilité professionnelle, la définition de l'<strong>activité professionnelle</strong> est au cœur de la couverture. C'est elle qui délimite le champ d'application de la police. Mal comprendre cette notion peut entraîner des surprises coûteuses en cas de sinistre. Chez RapidAssur, nous veillons à ce que cette définition soit aussi précise que possible.</p>
-
-            <h2 class="text-2xl font-bold my-4">Pourquoi la définition est-elle si importante ?</h2>
-            <p>La police d'assurance responsabilité professionnelle ne couvre que les fautes, erreurs ou omissions commises <strong>dans le cadre des activités professionnelles déclarées et définies</strong> au contrat. Si une réclamation découle d'une activité non décrite dans la police, l'assureur est en droit de refuser de couvrir le sinistre.</p>
+            <p>En assurance responsabilité professionnelle, la définition de l'<strong>activité professionnelle</strong> est au cœur de la couverture. C'est elle qui délimite le champ d'application de la police. Mal comprendre cette notion peut entraîner des surprises coûteuses en cas de sinistre. Chez RapidAssur, nous veillons à ce que cette définition soit aussi précise que possible.</p>  <h2 class="text-2xl font-bold my-4">Pourquoi la définition est-elle si importante ?</h2> <p>La police d'assurance responsabilité professionnelle ne couvre que les fautes, erreurs ou omissions commises <strong>dans le cadre des activités professionnelles déclarées et définies</strong> au contrat. Si une réclamation découle d'une activité non décrite dans la police, l'assureur est en droit de refuser de couvrir le sinistre.</p>
             <p>Par exemple, un consultant en informatique qui développe des logiciels est couvert pour cette activité. S'il commence à offrir des conseils en sécurité des données sans l'avoir déclaré, une réclamation liée à une faille de sécurité pourrait ne pas être couverte.</p>
 
             <h2 class="text-2xl font-bold my-4">Comment définir son activité professionnelle ?</h2>
-            <p>Il est essentiel d'être à la fois précis et exhaustif. Voici quelques conseils :</p>
-            <ul class="list-disc pl-5 space-y-2">
-                <li><strong>Listez toutes vos activités :</strong> Ne vous contentez pas de votre titre. Pensez à toutes les tâches et services que vous fournissez à vos clients.</li>
-                <li><strong>Pensez à l'avenir :</strong> Si vous prévoyez de développer de nouvelles offres de services, discutez-en avec votre courtier pour vous assurer qu'elles seront couvertes.</li>
-                <li><strong>Soyez spécifique :</strong> Évitez les termes vagues. "Consultant" est trop large. "Consultant en optimisation de la chaîne d'approvisionnement pour le secteur manufacturier" est beaucoup plus précis.</li>
-                <li><strong>Mettez à jour régulièrement :</strong> Votre entreprise évolue, votre contrat d'assurance doit évoluer avec elle. Informez votre courtier de tout changement significatif.</li>
-            </ul>
-
-            <h2 class="text-2xl font-bold my-4">L'approche de RapidAssur</h2>
-            <p>Chez RapidAssur, notre processus de soumission est conçu pour vous aider à définir précisément vos activités. Nous utilisons des questionnaires dynamiques qui s'adaptent à votre secteur et posent des questions ciblées pour ne rien oublier. Notre objectif est de construire une police qui est un véritable rempart pour votre entreprise, sans zones d'ombre.</p>
-
-            <h3 class="text-xl font-bold mt-6 mb-2">Conclusion</h3>
-            <p>Prendre le temps de définir correctement votre activité professionnelle est l'une des étapes les plus importantes pour garantir une couverture d'assurance responsabilité adéquate. C'est un investissement de temps qui peut vous sauver de bien des maux de tête en cas de réclamation. Ne laissez pas une définition floue mettre votre entreprise en péril.</p>
-        `
-    };
-
-    return (
-        <div className="flex flex-col min-h-screen bg-background text-foreground">
-            <Header />
-            <main className="flex-grow py-12">
-                <div className="container mx-auto px-4">
-                    <article className="max-w-4xl mx-auto">
-                        <header className="mb-8">
-                            <div className="mb-4">
-                                <Breadcrumb items={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} />
-                            </div>
-                            {post.imageUrl && (
-                                <div className="relative w-full h-72 md:h-96 rounded-2xl overflow-hidden mb-6">
-                                    <Image src={post.imageUrl} alt={`Illustration : ${post.title}`} fill style={{ objectFit: 'cover' }} priority />
-                                </div>
-                            )}
-                            <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-4">
-                                {post.category && <div className="flex items-center"><Tag className="mr-2 h-4 w-4 text-accent" /><span>{post.category}</span></div>}
-                                {post.date && <div className="flex items-center"><Calendar className="mr-2 h-4 w-4 text-accent" /><span>{post.date}</span></div>}
-                            </div>
-                            <h1 className="text-3xl md:text-4xl font-bold text-primary leading-tight">{post.title}</h1>
-                        </header>
-                        {post.content && (
-                            <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
-                        )}
-                    </article>
-                </div>
-            </main>
-            <Footer />
-        </div>
-    );
-}
+            <p>Il est essentiel d'être à la fois précis et exhaustif. Voici quelques conseils :</p> <ul class="list-disc pl-5 space-y-2"> <li><strong>Listez toutes vos activités :</strong> Ne vous contentez pas de votre titre. Pensez à toutes les tâches et services que vous fournissez à vos clients.</li> <li><strong>Pensez à l'avenir :</strong> Si vous prévoyez de développer de nouvelles offres de services, discutez-en avec votre courtier pour vous assurer qu'elles seront couvertes.</li> <li><strong>Soyez spécifique :</strong> Évitez les termes vagues. "Consultant" est trop large. "Consultant en optimisation de la chaîne d'approvisionnement pour le secteur manufacturier" est beaucoup plus précis.</li> <li><strong>Mettez à jour régulièrement :</strong> Votre entreprise évolue, votre contrat d'assurance doit évoluer avec elle. Informez votre courtier de tout changement significatif.</li> </ul>  <h2 class="text-2xl font-bold my-4">L'approche de RapidAssur</h2> <p>Chez RapidAssur, notre processus de soumission est conçu pour vous aider à définir précisément vos activités. Nous utilisons des questionnaires dynamiques qui s'adaptent à votre secteur et posent des questions ciblées pour ne rien oublier. Notre objectif est de construire une police qui est un véritable rempart pour votre entreprise, sans zones d'ombre.</p>  <h3 class="text-xl font-bold mt-6 mb-2">Conclusion</h3> <p>Prendre le temps de définir correctement votre activité professionnelle est l'une des étapes les plus importantes pour garantir une couverture d'assurance responsabilité adéquate. C'est un investissement de temps qui peut vous sauver de bien des maux de tête en cas de réclamation. Ne laissez pas une définition floue mettre votre entreprise en péril.</p> ` };  return ( <div className="flex flex-col min-h-screen bg-background text-foreground"> <Header /> <main className="flex-grow py-12"> <div className="container mx-auto px-4"> <article className="max-w-4xl mx-auto"> <header className="mb-8"> <div className="mb-4"> <Breadcrumb items={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} /> </div> {post.imageUrl && ( <div className="relative w-full h-72 md:h-96 rounded-2xl overflow-hidden mb-6"> <Image src={post.imageUrl} alt={`Illustration : ${post.title}`} fill style={{ objectFit: 'cover' }} priority /> </div> )} <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-4"> {post.category && <div className="flex items-center"><Tag className="mr-2 h-4 w-4 text-accent" /><span>{post.category}</span></div>} {post.date && <div className="flex items-center"><Calendar className="mr-2 h-4 w-4 text-accent" /><span>{post.date}</span></div>} </div> <h1 className="text-3xl md:text-4xl font-bold text-primary leading-tight">{post.title}</h1> </header> {post.content && ( <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} /> )} </article> </div> </main> <Footer /> </div> ); } 

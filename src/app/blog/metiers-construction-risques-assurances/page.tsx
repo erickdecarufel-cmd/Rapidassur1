@@ -9,9 +9,7 @@ const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title
 children }) => (
     <section className="mt-8">
         <h2 className="text-2xl font-semibold text-primary !mb-4">{title}</h2>
-        <div className="prose prose-lg max-w-none text-muted-foreground space-y-4
-prose-p:leading-relaxed prose-ul:text-muted-foreground prose-strong:text-
-primary">
+        <div className="prose prose-lg max-w-none text-muted-foreground space-y-4 prose-p:leading-relaxed prose-ul:text-muted-foreground prose-strong:text-primary">
             {children}
         </div>
     </section>
@@ -40,75 +38,25 @@ const ConstructionTradesBlog: React.FC = () => {
                             items={[
                                 { label: 'Accueil', href: '/' },
                                 { label: 'Blog', href: '/blog' },
-                                { label: "Métiers de la Construction : À Chaque Spécialiste, Son
-Assurance" },
+                                { label: "Métiers de la Construction : À Chaque Spécialiste, Son Assurance" },
                             ]}
                         />
                     </div>
-                    <div className="bg-background rounded-2xl shadow-lg border border-
-border/50 overflow-hidden p-8 sm:p-12">
+                    <div className="bg-background rounded-2xl shadow-lg border border-border/50 overflow-hidden p-8 sm:p-12">
                         <h1 className="text-3xl font-bold text-primary mb-2">Métiers de la
 Construction : À Chaque Spécialiste, Son Assurance</h1>
                         <p className="text-lg text-muted-foreground">
                             Le secteur de la construction est un écosystème complexe où chaque
 corps de métier joue un rôle essentiel. Cependant, un plombier ne fait pas face aux
 mêmes dangers qu'un couvreur, et un électricien n'a pas les mêmes responsabilités
-qu'un maçon. Comprendre ces nuances est la clé pour souscrire une <Highlight
-text="assurance" words={['assurance']} /> qui protège vraiment.
-                        </p>
-
-                        <Section title="Pourquoi une Approche Spécifique est-elle Nécessaire
-?">
-                            <p>
-                                Une police d'<Highlight text="assurance" words={['assurance']} />
+qu'un maçon. Comprendre ces nuances est la clé pour souscrire une <Highlight text="assurance" words={['assurance']} /> qui protège vraiment. </p>  <Section title="Pourquoi une Approche Spécifique est-elle Nécessaire ?"> <p> Une police d'<Highlight text="assurance" words={['assurance']} />
 "taille unique" est un mythe dans la construction. Les risques varient énormément
-en fonction des matériaux utilisés, des techniques employées, de l'environnement
-de travail (hauteur, espaces clos) et de l'impact potentiel d'une erreur. Une
-couverture inadaptée peut laisser des brèches béantes, exposant votre entreprise à
-des pertes financières catastrophiques.
-                            </p>
-                        </Section>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-                            <RiskCard
-                                title="Le Maçon"
-                                risk="Erreur de fondation ou de structure pouvant affecter l'intégrité
-du bâtiment."
-                                insurance="Responsabilité Civile Générale avec une couverture
-élevée pour les travaux complétés."
-                            />
-                            <RiskCard
-                                title="Le Plombier"
-                                risk="Dégât des eaux majeur suite à un raccord défectueux, causant
-des dommages étendus et graduels."
-                                insurance="Responsabilité Civile Générale incluant une extension
-pour les 'dommages graduels'."
-                            />
-                             <RiskCard
-                                title="L'Électricien"
-
-
-                                risk="Incendie causé par un défaut de câblage, mettant en danger
-les biens et les vies."
-                                insurance="Responsabilité Civile Générale et Professionnelle
-couvrant les dommages consécutifs à une erreur d'installation."
-                            />
-                            <RiskCard
-                                title="Le Couvreur"
-                                risk="Infiltration d'eau due à une mauvaise étanchéité, provoquant
-des dommages importants à l'intérieur du bâtiment."
-                                insurance="Responsabilité Civile Générale spécifique aux travaux de
-toiture, couvrant les dommages par l'eau."
-                            />
-                        </div>
-
-                        <Section title="Les Protections Communes Mais Essentielles">
-                            <p>
-                                Au-delà des spécificités, certains besoins sont universels pour tous
-les entrepreneurs spécialisés :
-                            </p>
-                            <ul className="list-disc pl-6 space-y-2">
-                                <li><strong>Responsabilité Civile Générale :</strong> C'est la base.
+en fonction des matériaux utilisés, des techniques employées, de l'environnement de travail (hauteur, espaces clos) et de l'impact potentiel d'une erreur. Une couverture inadaptée peut laisser des brèches béantes, exposant votre entreprise à des pertes financières catastrophiques. </p> </Section>  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8"> <RiskCard title="Le Maçon" risk="Erreur de fondation ou de structure pouvant affecter l'intégrité
+du bâtiment." insurance="Responsabilité Civile Générale avec une couverture
+élevée pour les travaux complétés." /> <RiskCard title="Le Plombier" risk="Dégât des eaux majeur suite à un raccord défectueux, causant
+des dommages étendus et graduels." insurance="Responsabilité Civile Générale incluant une extension
+pour les 'dommages graduels'." /> <RiskCard title="L'Électricien"   risk="Incendie causé par un défaut de câblage, mettant en danger les biens et les vies." insurance="Responsabilité Civile Générale et Professionnelle couvrant les dommages consécutifs à une erreur d'installation." /> <RiskCard title="Le Couvreur" risk="Infiltration d'eau due à une mauvaise étanchéité, provoquant des dommages importants à l'intérieur du bâtiment." insurance="Responsabilité Civile Générale spécifique aux travaux de
+toiture, couvrant les dommages par l'eau." /> </div>  <Section title="Les Protections Communes Mais Essentielles"> <p> Au-delà des spécificités, certains besoins sont universels pour tous les entrepreneurs spécialisés : </p> <ul className="list-disc pl-6 space-y-2"> <li><strong>Responsabilité Civile Générale :</strong> C'est la base.
 Elle couvre les dommages matériels ou corporels que vous pourriez causer à des
 tiers sur le chantier.</li>
                                 <li><strong><Highlight text="Assurance" words={['Assurance']} />
@@ -117,8 +65,7 @@ text="assurance" words={['assurance']} /> les protège contre le vol et le bris,
 soit sur le chantier, dans votre camion ou en location.</li>
                                 <li><strong><Highlight text="Assurance" words={['Assurance']} />
 Pollution :</strong> De plus en plus cruciale, elle couvre les frais liés à une
-contamination accidentelle des sols ou de l'eau, un risque présent même dans des
-métiers où on l'attend le moins.</li>
+contamination accidentelle des sols ou de l'eau, un risque présent même dans des métiers où on l'attend le moins.</li>
                             </ul>
                         </Section>
 

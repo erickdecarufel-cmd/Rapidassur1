@@ -13,36 +13,13 @@ export default function Page() {
         category: 'Assurance Responsabilité',
         date: '2024-07-23',
         content: `
-            <p>Les ordres professionnels jouent un rôle crucial dans la protection du public en encadrant la pratique de leurs membres. Une des pierres angulaires de cette protection est l'obligation pour les membres de détenir une assurance responsabilité professionnelle. Mais comment fonctionnent ces régimes collectifs ?</p>
-
-            <h2 class="text-2xl font-bold my-4">Le Rôle de l'Ordre Professionnel</h2>
-            <p>L'ordre professionnel négocie un contrat d'assurance collectif pour l'ensemble de ses membres. Cette approche présente plusieurs avantages :</p>
-            <ul class="list-disc pl-5 space-y-2">
-                <li><strong>Protection du public :</strong> Elle garantit que toute personne faisant appel à un membre de l'ordre aura un recours financier en cas de faute professionnelle.</li>
+            <p>Les ordres professionnels jouent un rôle crucial dans la protection du public en encadrant la pratique de leurs membres. Une des pierres angulaires de cette protection est l'obligation pour les membres de détenir une assurance responsabilité professionnelle. Mais comment fonctionnent ces régimes collectifs ?</p>  <h2 class="text-2xl font-bold my-4">Le Rôle de l'Ordre Professionnel</h2>
+            <p>L'ordre professionnel négocie un contrat d'assurance collectif pour l'ensemble de ses membres. Cette approche présente plusieurs avantages :</p> <ul class="list-disc pl-5 space-y-2"> <li><strong>Protection du public :</strong> Elle garantit que toute personne faisant appel à un membre de l'ordre aura un recours financier en cas de faute professionnelle.</li>
                 <li><strong>Mutualisation du risque :</strong> En regroupant tous les membres, le risque est réparti, ce qui permet généralement d'obtenir des primes plus avantageuses que si chaque membre devait s'assurer individuellement.</li>
-                <li><strong>Couverture adaptée :</strong> Le contrat est spécifiquement négocié pour couvrir les risques inhérents à la profession, offrant une protection plus pertinente qu'un contrat standard.</li>
-            </ul>
-
-            <h2 class="text-2xl font-bold my-4">Que couvre l'assurance de l'ordre ?</h2>
-            <p>Typiquement, le régime de base de l'ordre couvre les fautes, erreurs ou omissions commises dans l'exercice normal des activités réglementées par l'ordre. Cependant, il y a des limites.</p>
-            <p><strong>Ce qui n'est souvent pas couvert :</strong></p>
-            <ul class="list-disc pl-5 space-y-2">
-                <li><strong>Les activités hors du champ de pratique :</strong> Si un professionnel exerce des activités non réglementées par son ordre, celles-ci ne sont généralement pas couvertes.</li>
-                <li><strong>Les limites d'assurance :</strong> La limite de base peut être insuffisante pour des mandats d'envergure ou pour des clients qui exigent des montants de couverture plus élevés.</li>
-                <li><strong>Les exclusions spécifiques :</strong> Le contrat peut contenir des exclusions pour certains types de risques (par exemple, la fraude, les actes intentionnels, etc.).</li>
-            </ul>
-
-            <h2 class="text-2xl font-bold my-4">Avez-vous besoin d'une assurance complémentaire ?</h2>
-            <p>Pour de nombreux professionnels, l'assurance de base de leur ordre est un excellent point de départ, mais elle n'est pas toujours suffisante. C'est là qu'intervient l'assurance "excédentaire" ou "complémentaire".</p>
-            <p>Vous devriez envisager une assurance complémentaire si :</p>
-            <ul class="list-disc pl-5 space-y-2">
-                <li><strong>Vos contrats l'exigent :</strong> De plus en plus de clients, notamment les grandes entreprises et les organismes publics, exigent des limites d'assurance plus élevées.</li>
-                <li><strong>Vos activités dépassent le cadre de l'ordre :</strong> Vous offrez des services-conseils qui ne sont pas strictement définis par votre profession ? Une police complémentaire est essentielle.</li>
-                <li><strong>Vous voulez une protection accrue :</strong> Une assurance complémentaire peut offrir une paix d'esprit supplémentaire, surtout si vous travaillez sur des projets à haut risque.</li>
-            </ul>
-
-            <h3 class="text-xl font-bold mt-6 mb-2">Conclusion</h3>
-            <p>L'assurance responsabilité fournie par votre ordre professionnel est un filet de sécurité indispensable. Cependant, il est crucial de ne pas la considérer comme une solution universelle. Analysez attentivement vos activités et vos contrats pour déterminer si une assurance complémentaire est nécessaire pour combler les lacunes et vous offrir une protection à toute épreuve.</p>
+                <li><strong>Couverture adaptée :</strong> Le contrat est spécifiquement négocié pour couvrir les risques inhérents à la profession, offrant une protection plus pertinente qu'un contrat standard.</li> </ul>  <h2 class="text-2xl font-bold my-4">Que couvre l'assurance de l'ordre ?</h2> <p>Typiquement, le régime de base de l'ordre couvre les fautes, erreurs ou omissions commises dans l'exercice normal des activités réglementées par l'ordre. Cependant, il y a des limites.</p>
+            <p><strong>Ce qui n'est souvent pas couvert :</strong></p> <ul class="list-disc pl-5 space-y-2"> <li><strong>Les activités hors du champ de pratique :</strong> Si un professionnel exerce des activités non réglementées par son ordre, celles-ci ne sont généralement pas couvertes.</li> <li><strong>Les limites d'assurance :</strong> La limite de base peut être insuffisante pour des mandats d'envergure ou pour des clients qui exigent des montants de couverture plus élevés.</li> <li><strong>Les exclusions spécifiques :</strong> Le contrat peut contenir des exclusions pour certains types de risques (par exemple, la fraude, les actes intentionnels, etc.).</li> </ul>  <h2 class="text-2xl font-bold my-4">Avez-vous besoin d'une assurance complémentaire ?</h2>
+            <p>Pour de nombreux professionnels, l'assurance de base de leur ordre est un excellent point de départ, mais elle n'est pas toujours suffisante. C'est là qu'intervient l'assurance "excédentaire" ou "complémentaire".</p> <p>Vous devriez envisager une assurance complémentaire si :</p> <ul class="list-disc pl-5 space-y-2"> <li><strong>Vos contrats l'exigent :</strong> De plus en plus de clients, notamment les grandes entreprises et les organismes publics, exigent des limites d'assurance plus élevées.</li> <li><strong>Vos activités dépassent le cadre de l'ordre :</strong> Vous offrez des services-conseils qui ne sont pas strictement définis par votre profession ? Une police complémentaire est essentielle.</li>
+                <li><strong>Vous voulez une protection accrue :</strong> Une assurance complémentaire peut offrir une paix d'esprit supplémentaire, surtout si vous travaillez sur des projets à haut risque.</li> </ul>  <h3 class="text-xl font-bold mt-6 mb-2">Conclusion</h3> <p>L'assurance responsabilité fournie par votre ordre professionnel est un filet de sécurité indispensable. Cependant, il est crucial de ne pas la considérer comme une solution universelle. Analysez attentivement vos activités et vos contrats pour déterminer si une assurance complémentaire est nécessaire pour combler les lacunes et vous offrir une protection à toute épreuve.</p>
         `
     };
 

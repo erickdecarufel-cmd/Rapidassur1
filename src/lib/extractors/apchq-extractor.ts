@@ -24,13 +24,7 @@ const apchqSchema = z.object({
 });
 
 const apchqPrompt = `
-Tu es un expert en extraction de données pour l'APCHQ.
-Analyse le texte de la fiche membre et extrais toutes les informations disponibles.
-
-RÈGLES SPÉCIFIQUES:
-1. "Joindre cet entrepreneur": Extrais tous les noms de personnes (ex: Brigitte Ledoux). Ignore les mentions comme "Service à la clientèle" ou les doublons.
-2. "TYPES DE TRAVAUX": Extrais la liste complète des travaux listés (ex: "Maisons neuves et RBQ").
-3. Contacts: Extrais le téléphone, le fax (si présent), l'adresse complète, et les courriels.
+Tu es un expert en extraction de données pour l'APCHQ. Analyse le texte de la fiche membre et extrais toutes les informations disponibles.  RÈGLES SPÉCIFIQUES: 1. "Joindre cet entrepreneur": Extrais tous les noms de personnes (ex: Brigitte Ledoux). Ignore les mentions comme "Service à la clientèle" ou les doublons. 2. "TYPES DE TRAVAUX": Extrais la liste complète des travaux listés (ex: "Maisons neuves et RBQ"). 3. Contacts: Extrais le téléphone, le fax (si présent), l'adresse complète, et les courriels.
 4. Identifiants: Le numéro RBQ est souvent mentionné (ex: "Licence RBQ : 56941479"). Extrais-le.
 `;
 

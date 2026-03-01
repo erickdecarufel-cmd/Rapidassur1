@@ -54,55 +54,12 @@ function normalizeDate(dateStr: string): string {
     };
     const d = new Date();
     dateStr = dateStr.toLowerCase().replace(/[\r\n]/g, ' ').trim();
-    if (/aujourd'hui/i.test(dateStr)) { return d.toISOString().split('T')[0]; }
-    if (/demain/i.test(dateStr)) { d.setDate(d.getDate() + 1); return d.toISOString().split('T')[0]; }
-    if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return dateStr;
-    const dmyMatch = dateStr.match(/(\d{1,2})[\s\/-](\d{1,2})[\s\/-](\d{2,4})/);
-    if (dmyMatch) {
-        const day = dmyMatch[1].padStart(2, '0');
-        const month = dmyMatch[2].padStart(2, '0');
-        let year = dmyMatch[3];
-        if (year.length === 2) { year = `20${year}`; }
-        return `${year}-${month}-${day}`;
-    }
-    const frMatch = dateStr.match(/(?:lundi|mardi|mercredi|jeudi|vendredi|vendrerdi|samedi|dimanche)?\s*(?:(\d{1,2})(?:er)?)?\s*(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)(?:\s+(\d{4}))?/i);
-    if (frMatch) {
-        const day = (frMatch[1] || '01').padStart(2, '0');
-        const month = moisMap[frMatch[2].toLowerCase()];
-        const year = frMatch[3] || new Date().getFullYear().toString();
-        return `${year}-${month}-${day}`;
-    }
-    return dateStr;
-}
-
-interface ExtractionRule {
-    key?: string;
-    regex: RegExp;
-    value?: string;
-    group?: number;
-    multi?: string[];
-    process?: (v: string, match: RegExpMatchArray) => string;
-}
-
-function extractWithRegex(text: string): ParseAutoInfoOutput {
-    const result: Partial<ParseAutoInfoOutput> = { categoriesGeneral: [], categoriesSpecialise: [] };
-    let cleanedText = text.replace(/[\r\n]+/g, '\n').replace(/\s{2,}/g, ' ').trim();
-    const extractions: ExtractionRule[] = [
-        { key: 'nomClient', regex: /Entrepreneurs Conseils de pros Certifié APCHQ Financer vos projets\n(.*?)\n/i },
-        { key: 'nomClient', regex: /Accueil Rechercher par entreprise Résultats de recherche Fiche du détenteur de licence\n(.*?)\n/i },
-        { key: 'nomClient', regex: /^([A-Z\.\s]+\s*Rénovations\s*inc\.)/im },
-        { key: 'contactPrincipal', regex: /Joindre cet entrepreneur\n(.*?)\n/i, process: (v: string) => v.replace(/(Afficher|Masquer) l'information/gi, '').replace(/de tous les répondants/i, '').replace(/Prêt à conclure.*/, '').trim() },
+    if (/aujourd'hui/i.test(dateStr)) { return d.toISOString().split('T')[0]; } if (/demain/i.test(dateStr)) { d.setDate(d.getDate() + 1); return d.toISOString().split('T')[0]; } if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return dateStr; const dmyMatch = dateStr.match(/(\d{1,2})[\s\/-](\d{1,2})[\s\/-](\d{2,4})/); if (dmyMatch) { const day = dmyMatch[1].padStart(2, '0'); const month = dmyMatch[2].padStart(2, '0'); let year = dmyMatch[3]; if (year.length === 2) { year = `20${year}`; } return `${year}-${month}-${day}`; } const frMatch = dateStr.match(/(?:lundi|mardi|mercredi|jeudi|vendredi|vendrerdi|samedi|dimanche)?\s*(?:(\d{1,2})(?:er)?)?\s*(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)(?:\s+(\d{4}))?/i); if (frMatch) { const day = (frMatch[1] || '01').padStart(2, '0'); const month = moisMap[frMatch[2].toLowerCase()]; const year = frMatch[3] || new Date().getFullYear().toString(); return `${year}-${month}-${day}`; } return dateStr; }  interface ExtractionRule { key?: string; regex: RegExp; value?: string; group?: number; multi?: string[]; process?: (v: string, match: RegExpMatchArray) => string; }  function extractWithRegex(text: string): ParseAutoInfoOutput { const result: Partial<ParseAutoInfoOutput> = { categoriesGeneral: [], categoriesSpecialise: [] }; let cleanedText = text.replace(/[\r\n]+/g, '\n').replace(/\s{2,}/g, ' ').trim(); const extractions: ExtractionRule[] = [ { key: 'nomClient', regex: /Entrepreneurs Conseils de pros Certifié APCHQ Financer vos projets\n(.*?)\n/i }, { key: 'nomClient', regex: /Accueil Rechercher par entreprise Résultats de recherche Fiche du détenteur de licence\n(.*?)\n/i }, { key: 'nomClient', regex: /^([A-Z\.\s]+\s*Rénovations\s*inc\.)/im }, { key: 'contactPrincipal', regex: /Joindre cet entrepreneur\n(.*?)\n/i, process: (v: string) => v.replace(/(Afficher|Masquer) l'information/gi, '').replace(/de tous les répondants/i, '').replace(/Prêt à conclure.*/, '').trim() },
         { key: 'telephone', regex: /(\d{3}\s\d{3}-\d{4})/im },
         { key: 'courriel', regex: /(\S+@\S+\.\S+)/im },
         { key: 'adresseClient', regex: /([A-Za-zÀ-ÿ\s]+? \([A-Z]{2}\) [A-Z]\d[A-Z]\s\d[A-Z]\d)/im },
         { key: 'noRbq', regex: /Licence RBQ\s*:\s*(\d{8,10})/i },
-        { key: 'cautionnement', regex: /Une entreprise membre de l'APCHQ/i, value: 'APCHQ' },
-        { key: 'nomClient', regex: /^([\d-]+\sQuébec\sInc\.)/im },
-        { key: 'autresNoms', regex: /Autre\(s\)\snom\(s\)\s+([\s\S]*?)(?=Numéro de licence RBQ)/i, process: (v: string) => v.replace(/\n/g, ', ').replace(/,\s*$/, '').trim() },
-        { key: 'noRbq', regex: /Numéro de licence RBQ\s+([\d-]+)/i },
-        { key: 'dateDelivrance', regex: /Date de délivrance\s+(\d{4}-\d{2}-\d{2})/i, process: normalizeDate },
-        { key: 'datePaiementAnnuel', regex: /Date du paiement annuel\s+(\d{4}-\d{2}-\d{2})/i, process: normalizeDate },
-        { key: 'noReq', regex: /Numéro d'entreprise du Québec \(NEQ\)\s+(\d{10})/i },
+        { key: 'cautionnement', regex: /Une entreprise membre de l'APCHQ/i, value: 'APCHQ' }, { key: 'nomClient', regex: /^([\d-]+\sQuébec\sInc\.)/im }, { key: 'autresNoms', regex: /Autre\(s\)\snom\(s\)\s+([\s\S]*?)(?=Numéro de licence RBQ)/i, process: (v: string) => v.replace(/\n/g, ', ').replace(/,\s*$/, '').trim() }, { key: 'noRbq', regex: /Numéro de licence RBQ\s+([\d-]+)/i }, { key: 'dateDelivrance', regex: /Date de délivrance\s+(\d{4}-\d{2}-\d{2})/i, process: normalizeDate }, { key: 'datePaiementAnnuel', regex: /Date du paiement annuel\s+(\d{4}-\d{2}-\d{2})/i, process: normalizeDate }, { key: 'noReq', regex: /Numéro d'entreprise du Québec \(NEQ\)\s+(\d{10})/i },
         { key: 'adresseClient', regex: /Adresse\n([\s\S]*?)(?=Courriel|Téléphone)/i, process: (v: string) => v.replace(/\n/g, ' ').trim() },
         { key: 'courriel', regex: /Courriel\n(\S+@\S+\.\S+)/i },
         { key: 'telephone', regex: /Téléphone\n(\d{3}\s?[-\s]?\d{3}[-\s]?\d{4})/i },
@@ -111,8 +68,7 @@ function extractWithRegex(text: string): ParseAutoInfoOutput {
         { key: 'cautionnement', regex: /Association ou compagnie fournissant le cautionnement\n([\s\S]*?)(?=\nRépondant\(s\))/i, process: (v: string) => v.replace(/\n/g, ' ').trim() },
         { key: 'limitations', regex: /Limitation à la licence ou projet unique\s+([\s\S]*?)(?=Catégorie entrepreneur)/i, process: (v: string) => v.trim() },
         { key: 'numeroSerie', regex: /\b([A-HJ-NPR-Z0-9]{17})\b/i },
-        { key: 'vehicule', regex: /(\d{4})\s+([\w\sÀ-ÿ'-]{4,25}?)(?:\s+-\s*n\/s|\s+valeur|\s+coûté|\s+VIN|\s+km|\s*[,.\n]|$)/i, multi: ['annee', 'marqueModele'] },
-        { key: 'valeurVehicule', regex: /(?:valeur de|valeur à neuf|coûté|payé|évalué à)\s*[:\-\s.]*(\d{1,3}(?:[,'\s]?\d{3})*)\s*\$?(\s*neuf)?/i, process: (v: string, match: RegExpMatchArray) => `${v.replace(/[,'\s]/g, '')}${match[2] ? ' neuf' : ''}` },
+        { key: 'vehicule', regex: /(\d{4})\s+([\w\sÀ-ÿ'-]{4,25}?)(?:\s+-\s*n\/s|\s+valeur|\s+coûté|\s+VIN|\s+km|\s*[,.\n]|$)/i, multi: ['annee', 'marqueModele'] }, { key: 'valeurVehicule', regex: /(?:valeur de|valeur à neuf|coûté|payé|évalué à)\s*[:\-\s.]*(\d{1,3}(?:[,'\s]?\d{3})*)\s*\$?(\s*neuf)?/i, process: (v: string, match: RegExpMatchArray) => `${v.replace(/[,'\s]/g, '')}${match[2] ? ' neuf' : ''}` },
         { key: 'datePossession', regex: /(?:date d'effet|prise de possession|en vigueur le|commencer le|aller chercher|vendre.*le|possiioon de mon vehicule)\s*(?:le)?\s*((?:lundi|mardi|mercredi|jeudi|vendredi|vendrerdi|samedi|dimanche)?\s*(?:\d{1,2}[\s\/-]\d{1,2}[\s\/-]\d{2,4}|\d{1,2}(?:er)?\s*(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)[\w\s\d\/-]*|aujourd'hui|demain))/i, process: normalizeDate },
     ];
     const typesTravauxMatch = cleanedText.match(/TYPES DE TRAVAUX\s+([\s\S]+?)(?=RÉALISATIONS|PROGRAMMES)/i);

@@ -1,17 +1,5 @@
 /**
- * Orchestration de l'extraction de données universelle
- * Gère le flux complet: détection → extraction → validation → fusion
- */
-
-'use server';
-
-import { detectSource, validateContentForExtraction, detectMultipleSources } from '@/lib/source-detection';
-import { ExtractorFactory } from '@/lib/extractors/extractor-factory';
-import { mergeFiches, calculateFicheCompleteness } from '@/lib/data-merging';
-import { FicheDataV2, DataSource } from '@/lib/types-v2';
-
-/**
- * Résultat de l'analyse
+ * Orchestration de l'extraction de données universelle * Gère le flux complet: détection → extraction → validation → fusion */  'use server';  import { detectSource, validateContentForExtraction, detectMultipleSources } from '@/lib/source-detection'; import { ExtractorFactory } from '@/lib/extractors/extractor-factory'; import { mergeFiches, calculateFicheCompleteness } from '@/lib/data-merging'; import { FicheDataV2, DataSource } from '@/lib/types-v2';  /** * Résultat de l'analyse
  */
 export interface AnalysisResult {
     success: boolean;
@@ -28,14 +16,7 @@ export interface AnalysisResult {
  * @param content Contenu texte à analyser
  * @param existingFiche Fiche existante à enrichir (optionnel)
  * @param forceSource Forcer une source spécifique (optionnel)
- * @returns Résultat de l'analyse avec la fiche enrichie
- */
-export async function analyzeUniversalDoc(
-    content: string,
-    existingFiche?: FicheDataV2 | null,
-    forceSource?: DataSource
-): Promise<AnalysisResult> {
-    console.log('🚀 Début de l\'analyse universelle...');
+ * @returns Résultat de l'analyse avec la fiche enrichie */ export async function analyzeUniversalDoc( content: string, existingFiche?: FicheDataV2 | null, forceSource?: DataSource ): Promise<AnalysisResult> { console.log('🚀 Début de l\'analyse universelle...');
 
     const warnings: string[] = [];
 
@@ -53,29 +34,7 @@ export async function analyzeUniversalDoc(
         // ÉTAPE 2: Détection de la source
         console.log('🔍 Étape 2/5: Détection de la source...');
 
-        // Vérifier s'il y a plusieurs sources
-        const multipleSources = detectMultipleSources(content);
-        if (multipleSources.length > 1) {
-            warnings.push(
-                `Plusieurs sources détectées (${multipleSources.join(', ')}). ` +
-                `Il est recommandé de séparer les données pour une meilleure précision.`
-            );
-        }
-
-        // Déterminer la source à utiliser
-        const source = forceSource || detectSource(content);
-        if (!source) {
-            return {
-                success: false,
-                message: 'Impossible de détecter la source automatiquement. Veuillez spécifier la source manuellement.',
-                warnings
-            };
-        }
-
-        console.log(`✅ Source identifiée: ${source}`);
-
-        // ÉTAPE 3: Vérifier si un extracteur existe
-        console.log('🔧 Étape 3/5: Vérification de l\'extracteur...');
+        // Vérifier s'il y a plusieurs sources const multipleSources = detectMultipleSources(content); if (multipleSources.length > 1) { warnings.push( `Plusieurs sources détectées (${multipleSources.join(', ')}). ` + `Il est recommandé de séparer les données pour une meilleure précision.` ); }  // Déterminer la source à utiliser const source = forceSource || detectSource(content); if (!source) { return { success: false, message: 'Impossible de détecter la source automatiquement. Veuillez spécifier la source manuellement.', warnings }; }  console.log(`✅ Source identifiée: ${source}`);  // ÉTAPE 3: Vérifier si un extracteur existe console.log('🔧 Étape 3/5: Vérification de l\'extracteur...');
         if (!ExtractorFactory.hasExtractor(source)) {
             return {
                 success: false,

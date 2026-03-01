@@ -10,56 +10,7 @@ export default function HomePage() {
       >
         <div className="container mx-auto max-w-4xl relative z-10 flex flex-col items-center">
           <div className="mb-6 inline-flex items-center rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-medium tracking-widest text-gray-300 uppercase">
-            ● COURTIER INDÉPENDANT · QUÉBEC · 30 ANS D'EXPÉRIENCE
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
-            Le cerveau <span className="bg-gradient-to-r from-[#E9711C] to-orange-400 bg-clip-text text-transparent">prescriptif</span> du courtier
-          </h1>
-          
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-            Automatisez vos soumissions. Libérez 75 à 85% de votre temps BMS.
-          </p>
-
-          <p className="text-sm text-gray-400 mb-10 font-medium">
-            Construction · Flotte · Immobilier · Pro · Commercial · et 5 autres secteurs
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <Link href="/#construis" className="bg-[#E9711C] hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors">
-              ⚡ Construis ta prime
-            </Link>
-            <Link href="/internal/dashboard" className="border border-white/30 hover:bg-white/5 text-white font-bold py-3 px-8 rounded-lg transition-colors">
-              🎛️ Espace courtier
-            </Link>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-            <span>✓ Réponse en 2h</span>
-            <span>✓ 10 secteurs couverts</span>
-            <span>✓ 9 000 courtiers ciblés</span>
-            <span>✓ 100% indépendant</span>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 2 : AVANT/APRÈS */}
-      <section className="py-24 bg-[#030712] px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <span className="text-[#E9711C] font-bold text-sm tracking-wider uppercase">POURQUOI RAPIDASSUR</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">L'assurance de niche, ce n'est pas un produit générique</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Card Rouge */}
-            <div className="bg-[#111] border border-[#DC2626]/30 rounded-xl p-8">
-              <h3 className="text-2xl font-bold text-[#DC2626] mb-6">✗ Le vieux modèle BMS</h3>
-              <ul className="space-y-4 text-gray-300">
-                <li className="flex gap-3"><span>-</span> Remplir 60+ champs à la main dans Epic</li>
-                <li className="flex gap-3"><span>-</span> Risque de mal positionner le risque</li>
-                <li className="flex gap-3"><span>-</span> Renouvellement par défaut, sans révision</li>
-                <li className="flex gap-3"><span>-</span> Aucune visibilité sur l'appétit des assureurs</li>
+            ● COURTIER INDÉPENDANT · QUÉBEC · 30 ANS D'EXPÉRIENCE </div>  <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6"> Le cerveau <span className="bg-gradient-to-r from-[#E9711C] to-orange-400 bg-clip-text text-transparent">prescriptif</span> du courtier </h1>  <p className="text-xl text-gray-300 mb-8 max-w-2xl"> Automatisez vos soumissions. Libérez 75 à 85% de votre temps BMS. </p>  <p className="text-sm text-gray-400 mb-10 font-medium"> Construction · Flotte · Immobilier · Pro · Commercial · et 5 autres secteurs </p>  <div className="flex flex-col sm:flex-row gap-4 mb-12"> <Link href="/#construis" className="bg-[#E9711C] hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors"> ⚡ Construis ta prime </Link> <Link href="/internal/dashboard" className="border border-white/30 hover:bg-white/5 text-white font-bold py-3 px-8 rounded-lg transition-colors"> 🎛️ Espace courtier </Link> </div>  <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400"> <span>✓ Réponse en 2h</span> <span>✓ 10 secteurs couverts</span> <span>✓ 9 000 courtiers ciblés</span> <span>✓ 100% indépendant</span> </div> </div> </section>  {/* SECTION 2 : AVANT/APRÈS */} <section className="py-24 bg-[#030712] px-4"> <div className="container mx-auto max-w-6xl"> <div className="text-center mb-16"> <span className="text-[#E9711C] font-bold text-sm tracking-wider uppercase">POURQUOI RAPIDASSUR</span> <h2 className="text-3xl md:text-4xl font-bold mt-2">L'assurance de niche, ce n'est pas un produit générique</h2> </div>  <div className="grid md:grid-cols-2 gap-8"> {/* Card Rouge */} <div className="bg-[#111] border border-[#DC2626]/30 rounded-xl p-8"> <h3 className="text-2xl font-bold text-[#DC2626] mb-6">✗ Le vieux modèle BMS</h3> <ul className="space-y-4 text-gray-300"> <li className="flex gap-3"><span>-</span> Remplir 60+ champs à la main dans Epic</li> <li className="flex gap-3"><span>-</span> Risque de mal positionner le risque</li> <li className="flex gap-3"><span>-</span> Renouvellement par défaut, sans révision</li> <li className="flex gap-3"><span>-</span> Aucune visibilité sur l'appétit des assureurs</li>
                 <li className="flex gap-3"><span>-</span> 29h/semaine de saisie BMS</li>
               </ul>
             </div>
