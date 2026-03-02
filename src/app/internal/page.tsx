@@ -1,142 +1,244 @@
-'use client';
-import React from 'react';
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
-import { Breadcrumb } from '@/components/breadcrumb';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import {
-    Bot, Building2, RefreshCw, BookOpen, Car, AlertTriangle,
-    FileText, Users, Search, ArrowRight, HardHat, LayoutDashboard,
-    TrendingUp, Wrench, Shield, Newspaper
-} from 'lucide-react';
+'''use client''';
+import React, { useState, useEffect, useCallback } from 'react';
+import { PlusCircle, Edit, RefreshCw, Bot, FileText, Landmark, HardHat, Search, ArrowRight, Workflow, TrendingUp, Car, Briefcase, Utensils, Truck as TruckIcon, Mail, Rocket, ShieldCheck, Gauge, Building2, ShieldOff, FileSignature, Mailbox, Check, Users, FilePlus } from 'lucide-react';
 import Link from 'next/link';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Breadcrumb } from '@/components/breadcrumb';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const PortalCard = ({ href, title, description, icon, badge }: {
-    href: string; title: string; description: string;
-    icon: React.ReactNode; badge?: string;
-}) => (
-    <Link href={href} className="block group">
-        <Card className="h-full hover:border-accent hover:shadow-lg transition-all duration-300">
-            <CardHeader>
-                <CardTitle className="text-lg text-primary flex items-center gap-3 group-hover:text-accent">
-                    {icon}{title}
-                    {badge && <span className="ml-auto text-xs font-normal bg-accent/10 text-accent px-2 py-0.5 rounded-full">{badge}</span>}
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="text-sm text-muted-foreground">{description}</p>
-                <div className="text-sm font-semibold text-accent mt-3 flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Acceder <ArrowRight className="h-4 w-4" />
+// 1. DIALOGUE D'ACTIONS RAPIDES (Mis à jour avec Le Placeur)
+const QuickActionsDialog: React.FC<{ isOpen: boolean; onOpenChange: (open: boolean) => void }> = ({ isOpen, onOpenChange }) => {
+    const actions = [
+        { href: "/internal/mon-marketer", label: "MON MARKETER (Gare de Propulsion)", icon: <Rocket className="text-orange-500" />, highlight: true },
+        { href: "/assurance-automobile/transactions", label: "Portail Automobile (Clic+Auto)", icon: <Car /> },
+        { href: "/assurance-construction/transactions", label: "Chantier & Construction", icon: <HardHat /> },
+        { href: "/assurance-restauration/transactions", label: "Restauration", icon: <Utensils /> },
+        { href: "/assurance-automobile/transactions#transport", label: "Transport", icon: <TruckIcon /> },
+        { href: "/assurance-pros", label: "Professionnels & Général", icon: <Briefcase /> },
+    ];
+
+    return (
+        <Dialog open={isOpen} onOpenChange={onOpenChange}>
+            <DialogContent className="max-w-md w-full p-0">
+                <DialogHeader className="p-6 text-center items-center">
+                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 mb-2">
+                        <Workflow className="h-7 w-7 text-primary" />
+                    </div>
+                    <DialogTitle className="text-2xl font-bold text-primary">Actions Rapides</DialogTitle>
+                    <DialogDescription>Votre poste de pilotage pour les tâches essentielles.</DialogDescription>
+                </DialogHeader>
+                <div className="px-6 pb-6 space-y-3">
+                    {actions.map(action => (
+                        <Button asChild key={action.href} className={`w-full justify-between text-base py-6 ${action.highlight ? 'border-2 border-orange-500 bg-orange-50 hover:bg-orange-100 text-orange-900' : 'rome-button'}`}>
+                            <Link href={action.href} onClick={() => onOpenChange(false)}>
+                                <span className="flex items-center gap-3">
+                                    {action.icon}
+                                    {action.label}
+                                </span>
+                                <ArrowRight />
+                            </Link>
+                        </Button>
+                    ))}
                 </div>
-            </CardContent>
-        </Card>
-    </Link>
+                <div className="px-6 pb-4">
+                    <Button variant="ghost" className="w-full text-muted-foreground" onClick={() => onOpenChange(false)}>
+                        Fermer et voir le cockpit complet
+                    </Button>
+                </div>
+            </DialogContent>
+        </Dialog>
+    );
+};
+
+const WorkflowButton: React.FC<{ href: string; title: string; icon: React.ReactNode; variant?: "secondary" | "outline" | "default" }> = ({ href, title, icon, variant = "secondary" }) => (
+    <Button asChild variant={variant} className="w-full justify-start gap-3 text-left h-auto py-2">
+        <Link href={href}>
+            {icon}
+            <span className="truncate">{title}</span>
+        </Link>
+    </Button>
 );
 
-export default function InternalPortalPage() {
+const SubSection: React.FC<{ title: string; icon: React.ReactNode; children: React.ReactNode }> = ({ title, icon, children }) => (
+    <div>
+        <h4 className="text-sm font-semibold text-muted-foreground mb-2 flex items-center gap-2">
+            {icon}
+            {title}
+        </h4>
+        <div className="space-y-2">
+            {children}
+        </div>
+    </div>
+);
+
+export default function InternalDashboardPage() {
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== "undefined" && !sessionStorage.getItem('quickActionsDialogSeen')) {
+            const timer = setTimeout(() => {
+                setIsDialogOpen(true);
+                sessionStorage.setItem('quickActionsDialogSeen', 'true');
+            }, 500);
+            return () => clearTimeout(timer);
+        }
+    }, []);
+
+    const handleOpenChange = useCallback((open: boolean) => {
+        setIsDialogOpen(open);
+    }, []);
+
     return (
-        <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow container mx-auto px-4 py-12">
-                <div className="max-w-5xl mx-auto space-y-10">
-                    <Breadcrumb items={[{ label: 'Portail Clic+Pro' }]} />
+        <div className="space-y-8">
+            <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Clic+Cockpit' }]} />
 
-                    {/* En-tete */}
-                    <header className="text-center space-y-3">
-                        <div className="inline-block p-4 bg-primary/10 rounded-full mb-2">
-                            <HardHat className="h-12 w-12 text-primary" />
-                        </div>
-                        <h1 className="text-4xl font-bold text-primary">Portail Clic+Pro</h1>
-                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                            Votre espace de travail integre -- outils d&apos;analyse, guides de soumission et suivi des dossiers.
-                        </p>
-                    </header>
+            <QuickActionsDialog isOpen={isDialogOpen} onOpenChange={handleOpenChange} />
 
-                    {/* Dashboard hero card */}
-                    <section>
-                        <Link href="/internal/dashboard" className="block group">
-                            <div className="relative overflow-hidden rounded-2xl border-2 border-primary/20 p-8 transition-all duration-300 hover:border-accent hover:shadow-xl"
-                                style={{ background: 'linear-gradient(135deg, rgba(0,51,102,0.06) 0%, rgba(37,99,235,0.08) 100%)' }}>
-                                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-                                    <div className="flex items-start gap-5">
-                                        <div className="p-4 rounded-xl bg-primary/10 shrink-0">
-                                            <LayoutDashboard className="h-10 w-10 text-primary" />
-                                        </div>
-                                        <div>
-                                            <div className="flex items-center gap-3 mb-1">
-                                                <h2 className="text-2xl font-bold text-primary">Dashboard Courtier</h2>
-                                                <span className="text-xs font-semibold bg-green-500/15 text-green-700 px-3 py-1 rounded-full">Live</span>
-                                            </div>
-                                            <p className="text-muted-foreground max-w-xl">
-                                                KPIs en temps reel, 10 secteurs JotForm actifs, soumissions recentes et outils rapides.
-                                                ROI 22 500$/an -- Payback moins de 3 mois.
-                                            </p>
-                                            <div className="flex flex-wrap gap-4 mt-3 text-sm text-muted-foreground">
-                                                <span className="flex items-center gap-1"><TrendingUp className="h-3.5 w-3.5 text-accent" /> 47 soumissions ce mois</span>
-                                                <span className="flex items-center gap-1"><Shield className="h-3.5 w-3.5 text-green-600" /> 83% taux de conversion</span>
-                                                <span className="flex items-center gap-1"><Wrench className="h-3.5 w-3.5 text-primary" /> 1 317 champs actifs</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-2 text-accent font-semibold group-hover:gap-3 transition-all shrink-0">
-                                        Ouvrir le Dashboard <ArrowRight className="h-5 w-5" />
-                                    </div>
-                                </div>
-                            </div>
+            <header className="text-center space-y-4">
+                <h1 className="text-4xl font-bold text-primary tracking-tight">Le Cockpit du Courtier</h1>
+                <p className="text-lg text-muted-foreground">Gestion stratégique, analyse de conformité et propulsion de dossiers.</p>
+                <div className="flex justify-center items-center pt-2 gap-4">
+                    <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 shadow-lg px-8">
+                        <Link href="/internal/mon-marketer">
+                            <Rocket className="mr-2 h-5 w-5" /> OUVRIR MON MARKETER
                         </Link>
-                    </section>
-
-                    {/* Outils & Analyse */}
-                    <section>
-                        <h2 className="text-2xl font-semibold text-primary mb-4">Outils &amp; Analyse</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <PortalCard href="/internal/outils" title="Outils Internes"
-                                icon={<Bot className="h-5 w-5" />}
-                                description="Analyseur de texte IA, evaluation COPE, calculateur de ventilation des couts." />
-                            <PortalCard href="/internal/analyse-renouvellements" title="Analyse des Renouvellements"
-                                icon={<RefreshCw className="h-5 w-5" />}
-                                description="Identifiez les renouvellements a risque et preparez vos arguments de retention." />
-                            <PortalCard href="/assurance-automobile/transactions" title="Transactions Auto"
-                                icon={<Car className="h-5 w-5" />}
-                                description="Nouvelles affaires et avenants automobile -- workflow complet." />
-                        </div>
-                    </section>
-
-                    {/* Guides & Souscription */}
-                    <section>
-                        <h2 className="text-2xl font-semibold text-primary mb-4">Guides &amp; Souscription</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <PortalCard href="/guides" title="Guides de Soumission"
-                                icon={<BookOpen className="h-5 w-5" />}
-                                description="Guides pratiques par type de risque : entrepreneur general, toiture, inspecteur." />
-                            <PortalCard href="/internal/bloquants-souscription" title="Guide des Bloquants"
-                                icon={<AlertTriangle className="h-5 w-5" />}
-                                description="50+ metiers de la construction -- risques, conseils et drapeaux rouges." badge="Nouveau" />
-                            <PortalCard href="/internal/propositions-nouvelles-affaires" title="Propositions"
-                                icon={<FileText className="h-5 w-5" />}
-                                description="Nouvelles affaires -- generez et suivez vos propositions clients." />
-                        </div>
-                    </section>
-
-                    {/* Blog & Ressources */}
-                    <section>
-                        <h2 className="text-2xl font-semibold text-primary mb-4">Ressources &amp; Blog</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <PortalCard href="/blog" title="Articles du Blog"
-                                icon={<Newspaper className="h-5 w-5" />}
-                                description="Conseils pratiques, analyses de marche et actualites en assurance commerciale." />
-                            <PortalCard href="/guides" title="Guides Assurance"
-                                icon={<Search className="h-5 w-5" />}
-                                description="Recherchez par secteur -- construction, flotte, immobilier, professionnel." />
-                            <PortalCard href="/extraction" title="Extracteur IA"
-                                icon={<Bot className="h-5 w-5" />}
-                                description="Analysez des documents PDF -- extraction automatique des donnees cles." badge="IA" />
-                        </div>
-                    </section>
-
+                    </Button>
+                    <Button asChild size="lg">
+                        <Link href="/internal/fiche-nominative">
+                            <FilePlus className="mr-2 h-4 w-4" /> Créer une Fiche Nominative
+                        </Link>
+                    </Button>
                 </div>
-            </main>
-            <Footer />
+            </header>
+
+            <section>
+                <Tabs defaultValue="nouvelle-affaire" className="w-full">
+                    <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 h-auto bg-transparent p-0">
+                        <TabsTrigger value="nouvelle-affaire" className="p-4 h-full flex flex-col gap-2 rounded-lg border-2 data-[state=active]:border-primary">
+                            <PlusCircle className="h-8 w-8 text-primary"/>
+                            <span className="text-base font-semibold">Nouvelle Affaire</span>
+                        </TabsTrigger>
+                        <TabsTrigger value="modifications" className="p-4 h-full flex flex-col gap-2 rounded-lg border-2 data-[state=active]:border-primary">
+                            <Edit className="h-8 w-8 text-primary"/>
+                            <span className="text-base font-semibold">Modifications</span>
+                        </TabsTrigger>
+                        <TabsTrigger value="renouvellement" className="p-4 h-full flex flex-col gap-2 rounded-lg border-2 data-[state=active]:border-primary">
+                            <RefreshCw className="h-8 w-8 text-primary"/>
+                            <span className="text-base font-semibold">Renouvellement</span>
+                        </TabsTrigger>
+                        <TabsTrigger value="assistant" className="p-4 h-full flex flex-col gap-2 rounded-lg border-2 data-[state=active]:border-primary">
+                            <TrendingUp className="h-8 w-8 text-primary"/>
+                            <span className="text-base font-semibold">Assistant Producteur</span>
+                        </TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="nouvelle-affaire">
+                        <Card className="mt-4 border-t-4 border-primary">
+                            <CardHeader>
+                                <CardTitle>Qualification & Propulsion</CardTitle>
+                            </CardHeader>
+                            <CardContent className="grid md:grid-cols-3 gap-6">
+                                <SubSection title="Analyse & Qualification" icon={<Search />}>
+                                    <WorkflowButton href="/internal/mon-marketer" title="MON MARKETER (Propulsion)" icon={<Rocket className="text-orange-500" />} variant="default" />
+                                    <WorkflowButton href="/internal/hub-extractor" title="Clic+Extracteur (IA)" icon={<Bot />} />
+                                    <WorkflowButton href="/internal/outils/cope-evaluation" title="Évaluation COPE" icon={<Building2 />} />
+                                </SubSection>
+                                <SubSection title="Marché & Placement" icon={<HardHat />}>
+                                    <WorkflowButton href="/internal/appetit-assureurs" title="Appétits (Marchés)" icon={<Gauge />} />
+                                    <WorkflowButton href="/internal/lunique-appetit" title="Appétit L'Unique" icon={<ShieldCheck />} />
+                                </SubSection>
+                                <SubSection title="Conformité & Avis" icon={<FileSignature />}>
+                                    <WorkflowButton href="/internal/avizio" title="AVIZIO (Divergence)" icon={<ShieldOff />} />
+                                    <WorkflowButton href="/internal/quick-parts-outlook" title="Modèles Outlook" icon={<Mailbox />} />
+                                </SubSection>
+                            </CardContent>
+                             <CardFooter>
+                                <Button asChild className="w-full bg-slate-800">
+                                    <Link href="/internal/nouvelle-affaire">Ouvrir le Workflow Complet <ArrowRight className="ml-2"/></Link>
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    </TabsContent>
+
+                    <TabsContent value="modifications">
+                        <Card className="mt-4">
+                            <CardHeader>
+                                <CardTitle>Gérez les changements aux polices existantes avec des communications et une documentation impeccables.</CardTitle>
+                            </CardHeader>
+                            <CardContent className="grid md:grid-cols-3 gap-6">
+                                <SubSection title="Transactions Automobiles" icon={<Car/>}>
+                                    <p className="text-xs text-muted-foreground">Accédez au portail Clic+Auto pour tous les outils transactionnels : demande rapide, note de couverture, carte rose, etc.</p>
+                                    <Button asChild><Link href="/assurance-automobile/transactions">Ouvrir Clic+Auto</Link></Button>
+                                </SubSection>
+                                <SubSection title="Modèles de Communication" icon={<Mailbox/>}>
+                                    <p className="text-xs text-muted-foreground">Utilisez nos modèles de courriels pour standardiser et professionnaliser vos communications sur les avenants.</p>
+                                    <Button asChild><Link href="/internal/quick-parts-outlook">Voir les modèles</Link></Button>
+                                </SubSection>
+                                <SubSection title="Conformité (Art. 2400 C.c.Q.)" icon={<FileSignature/>}>
+                                    <p className="text-xs text-muted-foreground">Générez des avis de divergence pour tout changement inattendu à la police, assurant votre conformité légale.</p>
+                                    <Button asChild><Link href="/internal/avizio">Ouvrir Clic+AVIZIO</Link></Button>
+                                </SubSection>
+                            </CardContent>
+                             <CardFooter>
+                                <Button asChild className="w-full">
+                                    <Link href="/internal/modifications">Ouvrir le Cockpit Modifications <ArrowRight className="ml-2"/></Link>
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    </TabsContent>
+
+                    <TabsContent value="renouvellement">
+                        <Card className="mt-4">
+                             <CardHeader>
+                                <CardTitle>Préparez et optimisez les renouvellements pour maximiser la rétention et la valeur client.</CardTitle>
+                            </CardHeader>
+                            <CardContent className="grid md:grid-cols-3 gap-6">
+                                <SubSection title="Analyse Stratégique" icon={<Check />}>
+                                    <p className="text-xs text-muted-foreground">Checklist complète pour analyser le dossier client avant le renouvellement et identifier les opportunités.</p>
+                                    <Button asChild><Link href="/internal/analyse-renouvellements">Ouvrir la Checklist</Link></Button>
+                                </SubSection>
+                                 <SubSection title="Marché & Placement" icon={<HardHat />}>
+                                     <p className="text-xs text-muted-foreground">Outils pour la remise en marché : appétits des assureurs, aide à la proposition et fiches conseil.</p>
+                                     <Button asChild><Link href="/internal/appetit-assureurs">Voir les Appétits</Link></Button>
+                                </SubSection>
+                                <SubSection title="Communications" icon={<Mail />}>
+                                    <p className="text-xs text-muted-foreground">Modèles pour la gestion des refus de protection, la confirmation des garanties et les notes pour EPIC.</p>
+                                    <Button asChild><Link href="/internal/quick-parts-outlook">Accéder aux modèles</Link></Button>
+                                </SubSection>
+                            </CardContent>
+                            <CardFooter>
+                                <Button asChild className="w-full">
+                                    <Link href="/internal/renouvellement">Ouvrir le Cockpit Renouvellement <ArrowRight className="ml-2"/></Link>
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    </TabsContent>
+
+                    <TabsContent value="assistant">
+                        <Card className="mt-4">
+                            <CardHeader>
+                                <CardTitle>Un module pour la recherche, la qualification et le traitement proactif des prospects.</CardTitle>
+                            </CardHeader>
+                            <CardContent className="grid md:grid-cols-3 gap-6">
+                                <SubSection title="Tableau de Bord" icon={<Users />}>
+                                    <p className="text-xs text-muted-foreground">Vue centralisée de toutes les opportunités d'affaires en cours.</p>
+                                </SubSection>
+                                <SubSection title="Qualification" icon={<Check />}>
+                                    <p className="text-xs text-muted-foreground">Outils pour évaluer le potentiel de chaque lead et prioriser vos efforts.</p>
+                                </SubSection>
+                                <SubSection title="Traitement Accéléré" icon={<ArrowRight />}>
+                                    <p className="text-xs text-muted-foreground">Pré-remplissage des dossiers pour une prise en charge rapide.</p>
+                                </SubSection>
+                            </CardContent>
+                             <CardFooter>
+                                <Button asChild className="w-full"><Link href="/internal/assistant-producteur">Ouvrir l'Assistant Producteur</Link></Button>
+                            </CardFooter>
+                        </Card>
+                    </TabsContent>
+                </Tabs>
+            </section>
         </div>
     );
 }

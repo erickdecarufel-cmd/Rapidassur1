@@ -1,0 +1,20 @@
+[33mb3c4942[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m fix: add invokerIamDisabled to bypass Cloud Run IAM binding error
+[33m3edd86a[m fix: wrap useSearchParams in Suspense boundary
+[33m9824afd[m fix: restore 12 files compressed on single lines
+[33m32adeb6[m fix: eslintrc add rules off no-unescaped-entities display-name
+[33m60602d2[m fix: lint corrections blog pages
+[33m3762aa0[m fix: disable no-unescaped-entities for French text
+[33m0e0dc66[m fix: occurrence-vs-claims-made rewrite propre
+[33m370c4f0[m fix: strings cassées PDF + firebase.json/.firebaserc + stubs composants
+[33mecba800[m fix: correct ligatures in apphosting.yaml runConfig key
+[33m42f7213[m feat: inject canonical pages, add shadcn UI components, fix 199 ligatures
+[33ma9712a8[m fix: add picsum.photos to next.config.js image domains
+[33m0049684[m fix: répare articles blog -- metiers + coup-de-maitre
+[33m7139934[m fix: occurrence-vs-claims-made page -- corrige ligatures, import cassé, CSS parasite
+[33mb1dfa0d[m feat: inject 3 blog articles real content
+[33m302e11f[m feat: portail Clic+Pro -- dashboard hero card + 3 sections
+[33mcc05b95[m feat: dashboard courtier 342L -- nav sticky, KPI x6, layout 2 col, outils internes
+[33m45e5a83[m feat: add /guides page — chunk manquant strate 4
+[33m7fcfebd[m feat: injection complète 7 strates — RapidAssur Copilote reconstruction
+[33m481e7ae[m feat: Add /specialites (8 familles) et /outils (quiz interactif)
+[33mcef7274[m feat: Dashboard Courtier complet — dark theme #030712, 6 KPIs, 10 secteurs JotForm, table soumissions avec filtres
